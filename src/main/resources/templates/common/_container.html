@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit"/><!-- 让360浏览器默认选择webkit内核 -->
+
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="/css/plugins/bootstrap-table/bootstrap-editable.css" rel="stylesheet">
+    <link href="/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="/css/_fstyle.css" rel="stylesheet">
+    <link href="/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="/css/plugins/jquery-treegrid/css/jquery.treegrid.css" rel="stylesheet"/>
+    <link href="/css/plugins/datapicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <link  href="/css/plugins/select2/select2.css" rel="stylesheet">
+    <link href="/css/plugins/toastr/toastr.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link  href="/css/plugins/treeview/bootstrap-treeview.css" rel="stylesheet">
+
+
+    <!-- <link href="/css/plugins/ztree/demo.css" rel="stylesheet"> -->
+
+    <!-- 全局js -->
+    <script src="/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/js/plugins/ztree/jquery.ztree.all.min.js"></script>
+    <script src="/js/plugins/datapicker/bootstrap-datetimepicker.js"></script>
+    <script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="/js/plugins/bootstrap-table/bootstrap-table-editable.js"></script>
+    <script src="/js/plugins/bootstrap-table/bootstrap-editable.js"></script>
+    <script src="/js/plugins/validate/bootstrapValidator.min.js"></script>
+    <script src="/js/plugins/validate/zh_CN.js"></script>
+    <script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="/js/plugins/jquery-treegrid/js/jquery.treegrid.min.js"></script>
+    <script src="/js/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js"></script>
+    <script src="/js/plugins/jquery-treegrid/extension/jquery.treegrid.extension.js"></script>
+    <script src="/js/plugins/layer/layer.min.js"></script>
+    <script src="/js/plugins/iCheck/icheck.min.js"></script>
+    <!--<script src="/js/plugins/layer/laydate/laydate.js"></script>-->
+    <script src="/js/plugins/webuploader/webuploader.min.js"></script>
+    <script src="/js/common/ajax-object.js"></script>
+    <script src="/js/common/bootstrap-table-object.js"></script>
+    <script src="/js/plugins/select2/select2.js"></script>
+    <script src="/js/plugins/toastr/toastr.min.js"></script>
+
+    <script src="/js/plugins/treeview/bootstrap-treeview.js"></script>
+    <script src="/js/plugins/bootbox/bootbox.js"></script>
+    <script src="/js/common/tree-table-object.js"></script>
+    <script src="/js/common/web-upload-object.js"></script>
+    <script src="/js/common/ztree-object.js"></script>
+    <script src="/js/common/Feng.js"></script>
+
+
+    <script type="text/javascript">
+        $(function(){
+            $(".tableName").click(function(){
+                if($(this).next("div").is(':hidden')){
+                    $(this).find("span").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+                    $(this).next("div").slideDown('fast');
+                }else{
+                    $(this).find("span").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+                    $(this).next("div").slideUp('fast');
+                }
+            });
+        });
+//        Feng.addCtx("${ctxPath}");
+        Feng.sessionTimeoutRegistry();
+    </script>
+</head>
+
+<body class="gray-bg">
+<div>
+    <div layout:fragment="content"></div>
+</div>
+<script src="/js/content.js?v=1.0.0"></script>
+</body>
+</html>

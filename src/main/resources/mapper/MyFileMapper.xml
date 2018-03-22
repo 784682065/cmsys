@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.system.dao.MyFileDao">
+
+    <insert id="save" parameterType="com.huzp.cmsys.system.entity.MyFile">
+         INSERT  INTO  file
+         (filename,filepath,filecap,createtime,username)
+         VALUES (
+         #{filename,jdbcType=VARCHAR},
+         #{filepath,jdbcType=VARCHAR},
+         #{filecap,jdbcType=VARCHAR},
+         #{createtime},
+         #{username}
+         )
+    </insert>
+
+    <select id="getPathByName" resultType="string">
+        SELECT f.filepath
+        FROM file f
+        WHERE  f.filename=#{filename}
+    </select>
+
+    <select id="getMyFile" resultType="com.huzp.cmsys.system.entity.MyFile">
+        SELECT  f.filename,f.username,f.filecap,f.filepath,f.createtime,f.id
+        FROM  file f
+        WHERE f.username = #{username}
+    </select>
+
+    <delete id="deleteFile">
+        DELETE FROM  file
+        WHERE  filename=#{filename}
+    </delete>
+
+
+</mapper>

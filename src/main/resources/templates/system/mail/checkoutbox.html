@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="common/_container"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>我发送的邮件</title>
+</head>
+<body>
+<div layout:fragment="content">
+    邮件标题:<input type="text" th:attr="value=${myMail.title}"  readonly/> <br>
+    邮件来自 <span style="color: red;"  th:text="${byUsername}"></span><br>
+
+    邮件内容:<br><textarea type="text" th:text="${myMail.contents}" readonly></textarea><br>
+    <button>回到邮件主页</button>
+</div>
+</body>
+</html>

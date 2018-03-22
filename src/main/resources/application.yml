@@ -1,0 +1,40 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: com.huzp.cmsys.*.entity
+  mapperLocations: classpath:mapper/*.xml
+
+
+#项目启动端口
+server:
+  port: 8081
+---
+
+#开发配置
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/huzp
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+     # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    static-path-pattern: /**
+    thymeleaf:
+      prefix: classpath:/templates/
+      cache: false
+  http:
+    multipart:
+      max-file-size: 10Mb
+      max-request-size: 10Mb
+
+#spring.http.multipart.maxFileSize=100Mb
+#spring.http.multipart.maxRequestSize=100Mb

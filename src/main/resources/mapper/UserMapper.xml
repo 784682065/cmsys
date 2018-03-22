@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.system.dao.UserDao">
+
+      <select id="findById" resultType="com.huzp.cmsys.system.entity.User">
+           SELECT id,username, password, personname, sex, salt, dept, role, email, phone,
+           birth,createtime
+           FROM  user
+           WHERE id=#{userid}
+      </select>
+
+      <!--<insert id="a">-->
+            <!--INSERT INTO "user"(-->
+            <!--username, password, personname, sex, salt, dept, role, email, phone, birth, createtime-->
+            <!--) -->
+            <!---->
+      <!--</insert>-->
+    <update id="updatePwdById" parameterType="com.huzp.cmsys.system.entity.User">
+           UPDATE  user
+           SET  password = #{password,jdbcType=VARCHAR}
+           WHERE id=#{id}
+    </update>
+
+    <update id="editUserinfoById" parameterType="com.huzp.cmsys.system.entity.User">
+           UPDATE  user
+           SET
+           email = #{email,jdbcType=VARCHAR},
+           phone = #{phone,jdbcType=INTEGER},
+           birth = #{birth,jdbcType=VARCHAR}
+           WHERE id=#{id}
+    </update>
+
+    <select id="findByUsername" parameterType="integer" resultType="string">
+        SELECT  u.personname
+        FROM  user u
+        WHERE  u.username = #{username}
+    </select>
+
+</mapper>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>社团管理系统 - 登录</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css?v=4.1.0" rel="stylesheet">
+
+
+    <script src="/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/js/bootstrap.min.js?v=3.3.6"></script>
+    <style>
+        .gray-bg{
+            background:url("/img/bg.jpg");
+            position: relative;
+        }
+        .shade-box{
+            width:100%;
+            height:100%;
+            background-color:#000;
+            opacity:0.5;
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: #ffffff;
+        }
+        .shade-box p{
+            margin-top: 50px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .shade-box a{
+            color: #ffbc00;
+        }
+        .login-box{
+            position: absolute;
+            top: 180px;
+            left: 500px;
+            width: 400px;
+        }
+        .m-t{
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px  10px 1px #a3aae1;
+        }
+        .m-t .form-control{
+            font-size: 20px;
+            height: 50px;
+        }
+        .m-t .btn{
+            height: 50px;
+            font-size: 20px;
+        }
+        .copy-right{
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            margin-left: -112.23px;
+            font-size:16px;
+            color: rgba(255,255,255,0.8);
+
+        }
+        .copy-right a{
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+
+        }
+        .title{
+            position: absolute;
+            top: 50px;
+            left: 500px;
+        }
+        .input-box{
+            border-bottom: 1px solid #b7cdd9;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content:space-between;
+        }
+        .input-box input{
+            border: none;
+            outline:none;
+            font-size:20px;
+            text-align: center;
+        }
+        .input-box span{
+            color:#8aadbe;
+            font-size: 30px;
+        }
+        .input-box i{
+            height: 26px;
+            width: 26px;
+            font-size: 20px;
+            line-height: 26px;
+            color:#666666;
+            cursor: pointer;
+            border:2px solid #666666;
+            border-radius: 50%;
+            text-align: center;
+        }
+        .tips,.error-box{
+            background: #ffffff;
+            margin-top: 10px;
+            box-shadow: 0px 0px  10px 1px #a3aae1;
+            line-height: 40px;
+            color: red;
+            text-align: center;
+        }
+        .tips{
+            color: #333333;
+        }
+
+        .btn{
+            background: #1f4f82;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body class="gray-bg animated fadeInDown">
+    <div class="title ">
+        <img src="/img/login-titbg.png" alt="">
+    </div>
+    <div class="login-box">
+        <form class="m-t" role="form" action="/login" method="post" autocomplete="off">
+            <div align="center" style="font-size: 40px;margin-bottom: 30px;color: #333;">登&nbsp;&nbsp;&nbsp;&nbsp;录</div>
+            <div class="input-box">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <input type="text" name="username"  placeholder="用户名" required="">
+                <i class="fa fa-info user-name" aria-hidden="true"></i>
+            </div>
+            <div class="input-box">
+                <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                <input type="password" name="password"  placeholder="密码" required="">
+                <i class=" pass-word fa fa-info" aria-hidden="true"></i>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary block full-width">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            <p style="color:#d60e10; margin-top: 10px"></p>
+        </form>
+        <div class="error-box" th:text="${tips}"></div>
+        <div class="tips"></div>
+
+    </div>
+
+
+
+    <script>
+        $(function () {
+
+            $(".input-box").find("i").mouseover(function(){
+                if($(this).hasClass("user-name")){
+                    $(".tips").html("用户名通常是你的学号。").fadeIn();
+                }else if($(this).hasClass("pass-word")){
+                    $(".tips").html("忘记密码？ 请联系管理员。").fadeIn();
+                }
+            }).mouseout(function(){
+                $(".tips").fadeOut();
+            });
+
+        });
+    </script>
+
+
+
+</body>
+
+</html>

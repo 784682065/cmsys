@@ -1,0 +1,137 @@
+<div layout:fragment="content" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorator="common/_container">
+<div class="container-fluid" style="padding: 0 !important;">
+    <div class="row">
+        <div class="col-sm-12">
+            @for(notice in noticeList){
+            <div class="alert alert-success alert-dismissable">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                ${notice.CONTENT}
+            </div>
+            @}
+
+            <input type="hidden" id="digarmUrl" value="${digarm}"/>
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>待办事宜</h3>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="row row-md" style="margin-bottom: 15px">
+                        <div id="todotool" class="fl">
+                            <button id="already" style="margin-right: 10px" class="btn btn-warning"
+                                    onclick="BlackBoard.init(1)">待办流程
+                            </button>
+                            <button id="done" style="margin-right: 10px" class="btn btn-success"
+                                    onclick="BlackBoard.init(2)">已办流程
+                            </button>
+                            <button id="submit" class="btn btn-success" onclick="BlackBoard.init(3)">跟踪事项</button>
+                        </div>
+                        <div class="fr">
+                            <div class="btn-group" >
+                                <button id="submit1" class="btn btn-success" onclick="BlackBoard.spec_init(1,'')">
+                                    内部事项
+                                </button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a onclick="BlackBoard.spec_init(1,1)">交警</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(1,2)">边防</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(1,3)">治安</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(1,4)">人房</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(1,5)">出入境</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(1,6)">其他</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group" style="margin: 0 10px">
+                                <button id="submit2" class="btn btn-success"
+                                        onclick="BlackBoard.spec_init(2,'')">政&nbsp;&nbsp;务&nbsp;&nbsp;网
+                                </button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a onclick="BlackBoard.spec_init(2,1)">交警</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(2,2)">边防</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(2,3)">治安</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(2,4)">人房</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(2,5)">出入境</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(2,6)">其他</a></li>
+                                </ul>
+                            </div>
+                            <div class="btn-group" style=";margin-right: 10px">
+                                <button id="submit3" class="btn btn-success"
+                                        onclick="BlackBoard.spec_init(3,'')">阿拉警察
+                                </button>
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a onclick="BlackBoard.spec_init(3,1)">交警</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(3,2)">边防</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(3,3)">治安</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(3,4)">人房</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(3,5)">出入境</a></li>
+                                    <li><a onclick="BlackBoard.spec_init(3,6)">其他</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-lg">
+                        <#table id="todo"/>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript" src="${ctxPath}/static/js/contabs.js"></script>-->
+
+
+<div class="modal fade bs-example-modal-lg" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" style="width: 1320px;" role="document">
+        <div class="modal-content" style="margin-right: 5px;margin-left: 5px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+                <h3 class="modal-title" id="myModalLabel">流程图</h3>
+            </div>
+            <div class="modal-body" width="80%">
+                <iframe id="digarm" width="100%" frameborder="0" style="overflow: scroll;" height="600"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-lg" id="myModal2" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" style="width: 1320px;" role="document">
+        <div class="modal-content" style="margin-right: 5px;margin-left: 5px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+                <h3 class="modal-title" id="myModalLabel2">业务表单</h3>
+            </div>
+            <div class="modal-body" width="80%">
+                <iframe id="digarm2" width="100%" frameborder="0" style="overflow: scroll;" height="600"></iframe>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="${ctxPath}/static/modular/system/blackboard/blackboard.js"></script>
+</div>

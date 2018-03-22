@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.system.dao.MailDao">
+
+    <select id="checkMail" parameterType="integer" resultType="com.huzp.cmsys.system.entity.Mail">
+         SELECT m.id,m.title,m.contents,m.senddata,m.status,m.sendee,m.createuser
+         FROM  mail m
+         WHERE m.sendee=#{sendee};
+    </select>
+
+    <select id="checkMailById" parameterType="integer" resultType="com.huzp.cmsys.system.entity.Mail">
+        SELECT m.id,m.title,m.contents,m.senddata,m.status,m.sendee,m.createuser
+        FROM mail m
+        WHERE  m.id = #{id}
+    </select>
+
+    <update id="modifyMailStatus" parameterType="integer">
+        UPDATE  mail m
+        SET  m.status = "0"
+        WHERE  m.id = #{id}
+    </update>
+
+    <delete id="deleteMailById" parameterType="integer">
+        DELETE  FROM  mail
+        WHERE  id = #{id}
+    </delete>
+
+    <insert id="saveMail" parameterType="com.huzp.cmsys.system.entity.Mail">
+         INSERT INTO mail
+         (title, contents, status, senddata, createuser, sendee)
+         VALUES
+         (
+          #{title,jdbcType=VARCHAR},
+          #{contents,jdbcType=VARCHAR},
+          #{status},
+          #{senddata},
+          #{createuser},
+          #{sendee}
+         )
+
+    </insert>
+
+    <select id="checkMailByCreateuser" resultType="com.huzp.cmsys.system.entity.Mail">
+         SELECT m.id,m.title,m.contents,m.senddata,m.status,m.sendee,m.createuser
+         FROM  mail m
+         WHERE m.createuser=#{createuser};
+    </select>
+
+</mapper>

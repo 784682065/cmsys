@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.system.dao.ApplyCMDao">
+
+    <insert id="saveMes" parameterType="com.huzp.cmsys.system.entity.ApplyCM">
+          INSERT INTO cmapply
+          (type, cmname, applyreason, cmdirection, applicant, createtime, status,sign)
+          VALUES (
+           #{type},
+           #{cmname},
+           #{applyreason},
+           #{cmdirection},
+           #{applicant},
+           #{createtime},
+           #{status},
+           #{sign}
+          )
+
+    </insert>
+
+    <select id="findAllMes" resultType="map">
+        SELECT  id,type, cmname, applyreason, cmdirection,
+        (select a.personname from user a WHERE  a.username = t.applicant)  applicant,
+         createtime, status,sign
+        FROM  cmapply t
+        WHERE  sign = 'NOTDECIDE'
+        order by id  DESC
+    </select>
+
+    <select id="findMesById" parameterType="integer" resultType="com.huzp.cmsys.system.entity.ApplyCM">
+        SELECT  id,type, cmname, applyreason, cmdirection, applicant, createtime, status,sign
+        FROM  cmapply
+        WHERE  id = #{id}
+    </select>
+
+    <update id="UpdateStatusById">
+        UPDATE cmapply SET status = '0'
+        WHERE id= #{id}
+    </update>
+
+
+    <update id="UpdateSignById" >
+        UPDATE cmapply
+        SET sign = #{arg1}
+        WHERE  id = #{arg0}
+    </update>
+
+    <select id="findCMByName" resultType="string">
+        SELECT
+        (select a.personname from user a WHERE  a.username = t.createuser)  createuser
+        FROM
+        community t
+        WHERE
+        t.cmname = #{cmname}
+    </select>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,54 @@
+<div class="modal fade bs-example-modal-lg" id="transaction" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-right: 5px;margin-left: 5px">
+            <div class="modal-header">
+
+                <h3 style="color: black" class="modal-title">办结</h3>
+            </div>
+            <div class="modal-body my-form-box form-horizontal">
+
+                <div class="row">
+                    <label class="col-md-2 control-label" style="color: #1a7bb9">办结结果</label>
+                    <div class="col-md-10 transact">
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="trans" id="end" value="办结" checked>
+                                办结
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="trans" id="back" value="退件">
+                                退件
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="trans" id="error" value="作废办结">
+                                作废办结
+                            </label>
+                        </div>
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="trans" id="other" value="转办办结">
+                                转办办结
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-md-2 control-label" style="color: #1a7bb9"><br>办理结果描述</label>
+                    <div class="col-md-10">
+            <textarea class="form-control " id="transaction_opinion" rows="3"
+                      style="resize: none" placeholder="准予许可、不予许可等"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">&nbsp;&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;&nbsp;
+                </button>
+                <button class="btn btn-primary" onclick="out.deal('',out.reject,'2','')">&nbsp;&nbsp;确&nbsp;&nbsp;&nbsp;&nbsp;定&nbsp;&nbsp;</button>
+            </div>
+        </div>
+    </div>
+</div>

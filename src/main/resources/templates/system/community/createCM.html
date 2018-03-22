@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/_container">
+<!-- layout文件路径-->
+<head>
+    <meta charset="utf-8" />
+    <title>社团申请</title>
+</head>
+<body>
+<div layout:fragment="content" >
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <form id="applyForm" autocomplete="off"   th:object="${user}">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="text-align: center">
+                    <h2>社团申请信息填写</h2>
+                </div>
+                <div class="ibox-content bv-form" id="userInfoForm" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                    <div class="my-form-box  form-horizontal">
+                        <input type="hidden" id="id" value="13770" disabled="disabled">
+                        <input type="hidden" id="sexValue" value="1" disabled="disabled">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="col-sm-3 control-label">姓名</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="name" name="name" th:attr="value=${user.personname}" type="text" data-bv-field="name" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">性别</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" id="sex" name="sex" disabled="disabled">
+                                            <option value="1" th:selected="${user.sex == 1}"> 男 </option>
+                                            <option value="2" th:selected="${user.sex == 2}"> 女 </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">申请职务</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="rolename" name="rolename" th:value="社长" type="text" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">邮箱</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="email" name="email" th:attr="value=${user.email}" type="false"  disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">出生日期</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="birthday" name="birthday" th:attr="value=${user.birth}" type="date"  disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">电话</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="phone" name="phone" th:attr="value=${user.phone}" type="number" disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-feedback">
+                                    <label class="col-sm-3 control-label">班级</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="citySel" name="citySel" th:attr="value=${user.dept}" type="text"   disabled="disabled">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">社团名称</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="cmname" name="cmname"  >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">申请理由</label>
+                                <div class="col-sm-9">
+                                        <textarea class="form-control" id="applyreason" name="applyreason"  style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;">
+                                        </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">社团方向</label>
+                                <div class="col-sm-9">
+                                        <textarea class="form-control" id="cmdirection" name="cmdirection"  style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;">
+                                        </textarea>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input  type="button" class="btn btn-primary block full-width" onclick="Com.appCommuntiy()" value="申&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请">
+        </form>
+        <script src="/modular/system/community/community.js"></script>
+    </div>
+</div>
+</body>
+</html>

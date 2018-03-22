@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorator="common/_container" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>站内信</title>
+
+    <script>
+        var timer;
+        $(document).ready(function(){
+            if (timer == undefined) {
+                timer = window.setInterval(showTime, 1000);
+            }
+        });
+
+        //显示时间
+        function showTime() {
+            var now = new Date();
+            document.getElementById("spanTime").innerHTML = now.toLocaleTimeString();
+        }
+
+
+    </script>
+
+
+</head>
+<body>
+<div layout:fragment="content">
+    <h1> 发件箱</h1>
+    <div>
+        时间:<span id="spanTime" style="color: blue;">00:00:00</span>
+    </div>
+    <div>
+        <table border="1">
+            <tr>
+                <th>序号</th>
+                <th>邮件标题</th>
+                <th>创建时间</th>
+                <th>接收人</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="myMail : ${myMailList}">
+                <td th:text="${myMail.id}">id</td>
+                <td th:text="${myMail.title}">邮件标题</td>
+                <td th:text="${myMail.senddata}">创建时间</td>
+                <td th:text="${myMail.sendee}">接收人</td>
+                <td><a th:href="@{'/checkoutbox?id='+${myMail.id}}">查看</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<nav class="navbar-default navbar-static-side" role="navigation" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="">
+    <div class="nav-close"><i class="fa fa-times-circle"></i>
+    </div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                          <span class="block m-t-xs"  style="font-size: 20px;"><strong  class="font-bold" ><shiro:principal property="personname" /></strong>
+                             <a id="ImgTitle" class="J_menuItem" href="/checkmail" > <img id="MailTips" src="/img/mail.png" width="25"  height="25"> </a>
+                          </span><br>
+                          <span class="text-muted text-xs block"  style="font-size: 16px;"  th:text="${roleNameList.get(0)}">
+                            <b class="caret"></b>
+                          </span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a class="J_menuItem" href="/userinfo">个人资料</a></li>
+                        <li><a class="J_menuItem" href="/userchpwd">修改密码</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/logout">安全退出</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="logo-element">NingBo
+                </div>
+            </li>
+
+            <tr th:each="title : ${titles}">
+                <a th:if="${null == title.children}" >
+                    <li>
+                        <a class="J_menuItem" th:href="@{${title.url}}" name="tabMenuItem">
+                            <!--<i class="fa ${title.icon}"></i>-->
+                            <span class="nav-label" th:text="${title.name}">菜单名字</span>
+                        </a>
+                    </li>
+                </a>
+                <a th:unless="${null == title.children}">
+                    <li>
+                        <a href="#">
+                            <!--<a th:text="${title.children}"></a>-->
+                            <!--<i class="fa ${title.icon}"></i>-->
+                            <span class="nav-label" th:text="${title.name}">菜单名字</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li th:each="subTitle : ${title.children}" >
+                                <a th:if="${null == subTitle.children}" >
+                                        <a class="J_menuItem" th:href="@{${subTitle.url}}" name="tabMenuItem" th:text="${subTitle.name}" >菜单名字</a>
+                                </a>
+                                <a th:unless="${null == subTitle.children}">
+                                        <a href="#"  th:text="${subTitle.name} ">菜单名字<span class="fa arrow"></span></a>
+                                        <!--<ul class="nav nav-third-level">-->
+                                            <!--@for(thirdTitle in subTitle.children){-->
+                                            <!--<li>-->
+                                                <!--<a class="J_menuItem" href="${ctxPath}${thirdTitle.url}" name="tabMenuItem">${thirdTitle.name}</a>-->
+                                            <!--</li>-->
+                                            <!--@}-->
+                                        <!--</ul>-->
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </a>
+            </tr>
+
+        </ul>
+    </div>
+    <script src="/js/jquery.min.js?v=2.1.4"></script>
+    <script>
+        var timer=2000;
+        $(document).ready(function(){
+            //5秒刷新一次,演示时打开
+            window.setInterval(flg, timer);
+
+            $('#ImgTitle').click(function () {
+                $('#ImgTitle').text("查看邮件");
+            })
+
+            $("#ImgTitle").mouseleave( function() {
+                $("#ImgTitle").empty().append("<img id=\"MailTips\" src=\"/img/mail.png\" width=\"25\"  height=\"25\">");
+            });
+        });
+        function flg() {
+            $.ajax({
+                url: "/mailtip",
+                type: "post",
+                data: "",
+                success :function(data){
+                    if(data.status == 1) {
+//                        alert("开始闪烁        ");
+                        var status1 = setInterval(auto,400);
+//                        alert("status1:" + status1);
+                         setTimeout(function(){
+                             clearInterval(status1);
+                             },1000);
+//                         clearInterval(status1);
+                    }
+                }
+            });
+        }
+
+        function auto(){
+            $("img").fadeOut(400);
+            $("img").fadeIn(400);
+        }
+
+    </script>
+</nav>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorator="common/_container">
+<head>
+    <title>UpAndDownload.html</title>
+
+    <style>
+        body {
+            padding: 30px
+        }
+
+        form {
+            display: block;
+            margin: 20px auto;
+            background: #eee;
+            border-radius: 10px;
+            padding: 15px
+        }
+
+    </style>
+
+    <meta charset="utf-8">
+
+
+    <script src="/js/jquery.min.js?v=2.1.4"></script>
+
+    <script>
+        // wait for the DOM to be loaded
+        $(document).ready(function () {
+
+            $('#fileUp').click(function () {
+
+                var fd = new FormData();
+                var file = $('input[name="file"]').get(0).files[0];
+                fd.append("file", file);
+
+                $.ajax({
+                    url: "/upload",
+                    type: "post",
+                    data: fd,
+                    processData: false,
+                    contentType: false,
+
+                    success: function (data) {
+
+                        var res = confirm(data.state);
+
+                        $(location).attr('href', '/fileupanddownload');
+                    },
+
+                    error: function () {
+
+                    }
+                });
+            })
+
+        });
+    </script>
+</head>
+
+<body>
+<div layout:fragment="content">
+
+    <h1> 文件下载</h1>
+    <table border="1">
+        <tr>
+            <th>序号</th>
+            <th>文件名字</th>
+            <th>文件大小</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="myFile : ${myFileList}">
+            <td th:text="${myFile.id}">id</td>
+            <td th:text="${myFile.filename}">文件名字</td>
+            <td th:text="${myFile.filecap}">文件大小</td>
+            <td th:text="${myFile.createtime}">文件创建时间</td>
+            <td><a th:href="@{'/download?filename='+${myFile.filename}}">下载,</a><a
+                    th:href="@{'/delete?filename='+${myFile.filename}}">删除</a></td>
+        </tr>
+    </table>
+
+
+    <br><br>
+
+    <h1> 文件上传</h1>
+    <form id="myForm" enctype="multipart/form-data">
+        <input type="file" name="file"/>
+        <button type="button" id="fileUp" class="btn btn-primary block full-width">
+            附件上传
+        </button>
+    </form>
+</div>
+</body>
+</html>

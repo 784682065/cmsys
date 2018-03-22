@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.shiro.dao.ShiroUserDao">
+
+    <select id="getByUserName" resultType="com.huzp.cmsys.shiro.entity.ShiroUser">
+        SELECT
+        u.id, u.username, u.password, u.personname, u.sex,u.salt,u.role,u.dept
+        FROM user u WHERE u.username = #{username}
+    </select>
+
+
+    <select id="getById" resultType="string">
+        SELECT u.role FROM user u WHERE u.id = #{id}
+    </select>
+
+
+    <select id="findPermissionsByRoleId"  resultType="string">
+        SELECT p.permission FROM permissions p WHERE p.roleid = #{roleid}
+    </select>
+
+
+    <select id="findRoleNameByRoleId"  resultType="string">
+        SELECT r.rolename FROM role r WHERE r.roleid = #{roleid}
+    </select>
+
+
+    <!--<select id="findUserByid"  resultType="string">-->
+        <!--SELECT-->
+        <!--username, password, personname, sex, salt-->
+        <!--FROM user u WHERE u.id = #{userid}-->
+    <!--</select>-->
+
+    <!--<insert id="as">-->
+        <!--INSERT  INTO user-->
+        <!--(username, password, personname, sex, salt, BAK1, BAK2, BAK3, BAK4, BAK5)-->
+        <!--VALUES-->
+
+    <!--</insert>-->
+
+
+</mapper>

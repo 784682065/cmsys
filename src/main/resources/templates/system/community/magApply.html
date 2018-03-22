@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/_container">
+<!-- layout文件路径-->
+<head>
+    <meta charset="UTF-8">
+    <title>管理申请</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="ibox-title" style="text-align: center">
+        <h2>管理社团申请</h2>
+    </div>
+    <div class="ibox-content"></div>
+
+=        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>申请类型</th>
+                <th>申请人</th>
+                <th>查看</th>
+                <th>是否审阅</th>
+                <th>创建时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="Mes,iterStat: ${allMes}">
+                <a th:if="${null != iterStat.size}" >
+    
+                <td th:text="${iterStat.count}">id</td>
+                <td th:text="${Mes.type}">申请类型</td>
+                <td th:text="${Mes.applicant}">申请人</td>
+                <td><a th:href="@{'/checkApply?id='+${Mes.id}}">查看</a></td>
+                <td th:text="${Mes.status}">是否已读</td>
+                <td th:text="${Mes.createtime}">创建时间</td>
+
+                </a>
+            </tr>
+            </tbody>
+        </table>
+
+
+</div>
+</body>
+</html>

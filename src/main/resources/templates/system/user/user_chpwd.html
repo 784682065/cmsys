@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/_container">
+<!-- layout文件路径-->
+<head>
+    <meta charset="utf-8" />
+    <title>密码修改</title>
+</head>
+<body>
+<div layout:fragment="content" >
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <form autocomplete="off">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title" style="text-align: center">
+                        <h2>修改密码</h2>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="my-form-box  form-horizontal">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">原密码</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="oldPwd" name="oldPwd" type="password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">新密码</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="newPwd" name="newPwd" type="password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">新密码验证</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="rePwd" name="rePwd" type="password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="fr">
+                                        <button type="button" class="btn btn-info " onclick="UserInfoDlg.chPwd()" id="ensure">
+                                            <i class="fa fa-check"></i>&nbsp;提交
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/modular/system/user/user_info.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+package com.huzp.cmsys.system.controller;
+
+import com.alibaba.fastjson.JSONObject;
+import com.huzp.cmsys.system.dao.ApplyCMDao;
+import com.huzp.cmsys.system.entity.ApplyCM;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @Author: huzp
+ * @Description: 社团管理controller
+ * @Date: 9:50 2018/3/9
+ * @Modified By:
+ */
+@Controller
+public class MagCmController {
+
+    @Autowired
+    ApplyCMDao applyCMDao;
+
+    /**
+     * 打开管理申请页面
+     * 前台还需做if 判断allMes 是否为空
+     * @return
+     */
+    @RequestMapping("/magapply")
+    public String MagApply(Model model){
+
+        List<Map<String,Object>> allMes = applyCMDao.findAllMes();
+        model.addAttribute("allMes",allMes);
+
+        return "/system/community/magApply";
+    }
+
+    /**
+     * 查看申请的具体内容
+     * @param id
+     * @return
+     */
+    @RequestMapping("/checkApply")
+    public String CheckApply(@RequestParam("id") Integer id,Model model){
+
+        //查出mes
+        ApplyCM mesById = applyCMDao.findMesById(id);
+
+        model.addAttribute("mesById",mesById);
+
+        //更改status
+        applyCMDao.UpdateStatusById(id);
+
+        return "/system/community/checkMes";
+    }
+
+
+    /**
+     * 拒绝申请通过
+     * @param id
+     * @return
+     */
+    @RequestMapping("/rejectApply")
+    @ResponseBody
+    public JSONObject rejectApply(@RequestParam("mesId") Integer id){
+
+        JSONObject jsonObject = new JSONObject();
+        String sign="failur";
+        applyCMDao.UpdateSignById(id,sign);
+        jsonObject.put("status","驳回成功");
+
+        return jsonObject;
+    }
+
+}
