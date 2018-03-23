@@ -70,7 +70,7 @@ public class MagCmController extends BaseController{
     public JSONObject rejectApply(@RequestParam("mesId") Integer id){
 
         JSONObject jsonObject = new JSONObject();
-        String sign="failur";
+        String sign="FAILUR";
         applyCMDao.UpdateSignById(id,sign);
 
 
@@ -90,7 +90,7 @@ public class MagCmController extends BaseController{
 
         Map<String, Object> CommunityMes = super.getRequestParameters();
 
-        String sign="success";
+        String sign="SUCCESS";
 
         //1.社团表+1
         applyCMDao.addCommunity(CommunityMes);
