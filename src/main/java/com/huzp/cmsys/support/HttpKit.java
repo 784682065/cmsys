@@ -37,13 +37,13 @@ public class HttpKit {
     /**
      * 获取所有请求的值
      */
-    public static Map<String, String> getRequestParameters() {
-        HashMap<String, String> values = new HashMap<>();
+    public static Map<String, Object> getRequestParameters() {
+        HashMap<String, Object> values = new HashMap<>();
         HttpServletRequest request = HttpKit.getRequest();
         Enumeration enums = request.getParameterNames();
         while ( enums.hasMoreElements()){
             String paramName = (String) enums.nextElement();
-            String paramValue = request.getParameter(paramName);
+            Object paramValue = request.getParameter(paramName);
             values.put(paramName, paramValue);
         }
         return values;

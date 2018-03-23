@@ -23,7 +23,7 @@ public interface ApplyCMDao {
     List<Map<String,Object>> findAllMes();
 
     //根据id查找某一条Mes
-    ApplyCM findMesById(Integer id);
+    Map<String,Object> findMesById(Integer id);
 
     //根据id 更新申请的sign
     void  UpdateSignById(Integer arg0, String arg1);
@@ -33,6 +33,15 @@ public interface ApplyCMDao {
 
     //根据社团名字查找是否有相同的社团
     String findCMByName (String cmname);
+
+    //社团表增加社团
+    void addCommunity (Map<String,Object> addCm);
+
+    //社长插入社团人员表
+    void addMemberProprieter (Map<String,Object> addMp);
+
+    //根据社团名字查找社团id
+    Integer findCmIdByName(String name);
 
 
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 public class BaseController {
 
@@ -37,6 +38,10 @@ public class BaseController {
 
     protected String getPara(String name) {
         return HttpKit.getRequest().getParameter(name);
+    }
+
+    protected Map<String, Object>  getRequestParameters (){
+        return HttpKit.getRequestParameters();
     }
 
     protected void setAttr(String name, Object value) {

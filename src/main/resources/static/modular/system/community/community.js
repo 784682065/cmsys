@@ -1,6 +1,7 @@
 var Com={};
 
 Com.appCommuntiy= function () {
+    alert($("#applyForm").serialize());
     $.post("/applyCM",$("#applyForm").serialize(),function (data) {
         if (data.status == "成功"){
         Feng.success("申请成功");
@@ -17,7 +18,6 @@ Com.appCommuntiy= function () {
  */
 Com.rejectApply = function () {
 
-    alert( $("#mesId").text() );
     $.ajax({
         type: "POST",
         url:  "/rejectApply",
@@ -25,7 +25,6 @@ Com.rejectApply = function () {
         success: function(data){
 
             if (data.status == "成功"){
-
                 Feng.success(data.status);
                 $(location).attr('href', '/magapply');
             }else {
@@ -36,9 +35,3 @@ Com.rejectApply = function () {
     });
 }
 
-/**
- * 通过社团申请
- */
-Com.passApply= function () {
-    Feng.success("通过");
-}

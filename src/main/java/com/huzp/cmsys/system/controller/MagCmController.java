@@ -1,6 +1,7 @@
 package com.huzp.cmsys.system.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.huzp.cmsys.base.BaseController;
 import com.huzp.cmsys.system.dao.ApplyCMDao;
 import com.huzp.cmsys.system.entity.ApplyCM;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.Map;
  * @Modified By:
  */
 @Controller
-public class MagCmController {
+public class MagCmController extends BaseController{
 
     @Autowired
     ApplyCMDao applyCMDao;
@@ -48,7 +49,7 @@ public class MagCmController {
     public String CheckApply(@RequestParam("id") Integer id,Model model){
 
         //查出mes
-        ApplyCM mesById = applyCMDao.findMesById(id);
+        Map<String, Object> mesById = applyCMDao.findMesById(id);
 
         model.addAttribute("mesById",mesById);
 
@@ -71,7 +72,43 @@ public class MagCmController {
         JSONObject jsonObject = new JSONObject();
         String sign="failur";
         applyCMDao.UpdateSignById(id,sign);
-        jsonObject.put("status","驳回成功");
+
+
+        jsonObject.put("status","成功");
+
+        return jsonObject;
+    }
+
+
+    @RequestMapping("/passApply")
+    @ResponseBody
+    public JSONObject passApply(){
+        
+        JSONObject jsonObject = new JSONObject();
+
+        super.getPara("name");
+
+        Map<String, Object> CommunityMes = super.getRequestParameters();
+
+        String sign="success";
+
+        //1.社团表+1
+        applyCMDao.addCommunity(CommunityMes);
+
+        Integer cmId = applyCMDao.findCmIdByName((String) CommunityMes.get("cmname"));
+
+        CommunityMes.put("cmId",cmId);
+
+        //2.社团社长人员表插入信息
+        applyCMDao.addMemberProprieter(CommunityMes);
+
+        //3.发送邮件通知
+        // TODO: 2018/3/23   发送邮件通知
+
+        //4.修改申请消息状态为成功
+        applyCMDao.UpdateSignById((Integer.parseInt((String) CommunityMes.get("id"))),sign);
+
+        jsonObject.put("status","成功");
 
         return jsonObject;
     }

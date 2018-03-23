@@ -27,9 +27,12 @@
         order by id  DESC
     </select>
 
-    <select id="findMesById" parameterType="integer" resultType="com.huzp.cmsys.system.entity.ApplyCM">
-        SELECT  id,type, cmname, applyreason, cmdirection, applicant, createtime, status,sign
-        FROM  cmapply
+    <select id="findMesById" parameterType="integer" resultType="map">
+        SELECT  id,type, cmname, applyreason, cmdirection,
+        (select a.personname from user a WHERE  a.username = t.applicant)  account,
+        t.applicant,
+        createtime, status,sign
+        FROM  cmapply t
         WHERE  id = #{id}
     </select>
 
@@ -55,7 +58,44 @@
     </select>
 
 
+    <insert id="addCommunity" parameterType="map">
+        INSERT INTO community
+        (cmname, cmdirection, createuser, createtime)
+        VALUES
+        (
+            #{cmname},
+            #{cmdirection},
+            #{applicant},
+            (select now())
+        )
+
+    </insert>
+
+    <insert id="addMemberProprieter">
+        INSERT INTO  communitymember
+        (username, communityid, communityposition)
+        VALUES (
+         #{applicant},
+         #{cmId},
+         1
+        )
+
+    </insert>
 
 
+    <select id="findCmIdByName" resultType="integer">
+        SELECT t.id
+        FROM community t
+        WHERE
+        t.cmname = #{name}
+    </select>
+
+    <delete id="deleteMes" parameterType="integer">
+        DELETE
+        FROM
+        cmapply
+        WHERE
+        id = #{id}
+    </delete>
 
 </mapper>

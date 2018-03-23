@@ -9,17 +9,14 @@
 </head>
 <body>
 <div layout:fragment="content">
-
-
     <div class="wrapper wrapper-content animated fadeInRight">
         <!--th:action="@{/editUserinfo(userId=${user.id})} 传参数-->
-        <form autocomplete="off" action="#"  th:object="${mesById}" >
+        <form autocomplete="off"  th:object="${mesById}" id="addCommunity">
             <div class="ibox-title" style="text-align: center">
                 <h2>查看申请</h2>
                 申请编号: <h3 id="mesId" th:text="${mesById.id}"></h3>
             </div>
             <div class="ibox-content">
-
                 <div class="ibox-content bv-form" id="userInfoForm" novalidate="novalidate">
                     <div class="my-form-box  form-horizontal">
                         <input type="hidden" id="id" value="13770" disabled="disabled">
@@ -29,8 +26,9 @@
                                 <div class="form-group has-feedback">
                                     <label class="col-sm-3 control-label">姓名</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="name" name="name" th:attr="value=${mesById.applicant}" type="text"
+                                        <input class="form-control" id="name" name="name" th:attr="value=${mesById.account}" type="text"
                                                data-bv-field="name" disabled="disabled">
+                                        <input type="text" hidden="hidden" th:attr="value=${mesById.applicant} ">
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +67,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">申请理由</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="applyreason" name="applyreason"   th:field ="${mesById.applyreason}" style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;" disabled="disabled">
+                                        <textarea class="form-control" id="applyreason" name="applyreason"  th:text ="${mesById.applyreason}" style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;" disabled="disabled">
                                         </textarea>
                                     </div>
                                 </div>
@@ -78,22 +76,38 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">社团方向</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="cmdirection" name="cmdirection"  th:text ="${mesById.cmdirection}"  style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;" disabled="disabled">
+                                        <textarea class="form-control" id="cmdirection" name="cmdirection"  th:text ="*{cmdirection}"  style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;" disabled="disabled">
                                         </textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                            <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="Com.passApply()" value="通过">
-                        <br><br>
-                            <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="Com.rejectApply()" value="驳回">
                     </div>
                 </div>
             </div>
+            <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="passApply()" value="通过">
+            <br><br>
+            <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="Com.rejectApply()" value="驳回">
         </form>
     </div>
     <script src="/modular/system/community/community.js"></script>
 
+    <script th:inline="javascript">
+        function passApply() {
+
+            var  mes =  /*[[${mesById}]]*/ null;
+
+            $.post("/passApply",mes,function (data) {
+                if (data.status == "成功"){
+                    Feng.success("申请成功");
+                    $(location).attr('href', '/magapply');
+                }else {
+                    Feng.error("创建失败,该社团已经被创建");
+                    $(location).attr('href', '/magapply');
+                }
+            });
+        }
+    </script>
 </div>
 </body>
 </html>
