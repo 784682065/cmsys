@@ -125,7 +125,6 @@ public class FileController extends BaseController{
             myFile.setUsername(Integer.parseInt(ShiroKit.getUser().getUsername()));
 
             myFileDao.save(myFile);
-            System.out.println("1111");
 
             //因为文件名字可能有所变动所以重新创建dest
             dest = new File(filePath + fileName);
