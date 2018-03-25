@@ -33,8 +33,6 @@ public class FileController extends BaseController{
     MyFileDao myFileDao;
 
 
-
-
     /**
      * 打开upAnddownload页面
      * @return

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.system.dao.MyCMDao">
+    
+
+    <select id="findMyCM" parameterType="integer" resultType="map">
+
+        SELECT
+        t.id,
+        (SELECT  C.cmname FROM     community C  WHERE C.id = t.communityid) AS cmname,
+        (SELECT  D.position FROM  position   D  WHERE D.id = t.communityposition) AS myposition
+        FROM
+        communitymember t
+        WHERE
+        t.username = #{username}
+        ORDER BY
+        communityposition
+        LIMIT #{offset},#{limit}
+
+    </select>
+
+    <select id="getTotal" resultType="integer">
+        select count(*)
+        from
+        communitymember
+    </select>
+
+
+</mapper>
