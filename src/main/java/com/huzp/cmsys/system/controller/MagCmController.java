@@ -3,7 +3,9 @@ package com.huzp.cmsys.system.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.huzp.cmsys.base.BaseController;
 import com.huzp.cmsys.system.dao.ApplyCMDao;
+import com.huzp.cmsys.system.dao.PageDao;
 import com.huzp.cmsys.system.entity.ApplyCM;
+import com.huzp.cmsys.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,16 +28,30 @@ public class MagCmController extends BaseController{
     @Autowired
     ApplyCMDao applyCMDao;
 
+
+    @Autowired
+    PageDao pageDao;
+
     /**
      * 打开管理申请页面
      * 前台还需做if 判断allMes 是否为空
      * @return
      */
-    @RequestMapping("/magapply")
-    public String MagApply(Model model){
+    @RequestMapping(value= {"/magapply","/"})
+    public String MagApply(Model model,Page<List<Map<String,Object>>> page){
 
-        List<Map<String,Object>> allMes = applyCMDao.findAllMes();
+
+        Integer total = applyCMDao.getTotal();
+
+        page.setTotalCount(total);
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
+
+        List<Map<String,Object>> allMes = applyCMDao.findAllMes(offset,limit);
+
+
         model.addAttribute("allMes",allMes);
+        model.addAttribute("page",page);
 
         return "/system/community/magApply";
     }

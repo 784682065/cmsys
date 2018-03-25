@@ -15,8 +15,17 @@
            #{status},
            #{sign}
           )
-
     </insert>
+
+
+    <select id="getTotal" resultType="integer">
+        select count(*)
+        from      cmapply
+        WHERE  sign = 'NOTDECIDE'
+        order by id  DESC
+
+    </select>
+
 
     <select id="findAllMes" resultType="map">
         SELECT  id,type, cmname, applyreason, cmdirection,
@@ -25,6 +34,7 @@
         FROM  cmapply t
         WHERE  sign = 'NOTDECIDE'
         order by id  DESC
+        limit #{offset},#{limit}
     </select>
 
     <select id="findMesById" parameterType="integer" resultType="map">
@@ -90,12 +100,6 @@
         t.cmname = #{name}
     </select>
 
-    <delete id="deleteMes" parameterType="integer">
-        DELETE
-        FROM
-        cmapply
-        WHERE
-        id = #{id}
-    </delete>
+
 
 </mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.system.dao.PageDao">
+
+    <select id="getTotal" parameterType="string" resultType="integer"  statementType="STATEMENT">
+
+        select count(*)
+        from
+        ${tableName}
+        order by createtime
+        desc
+    </select>
+
+
+
+</mapper>

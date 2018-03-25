@@ -1,7 +1,6 @@
 var Com={};
 
 Com.appCommuntiy= function () {
-    alert($("#applyForm").serialize());
     $.post("/applyCM",$("#applyForm").serialize(),function (data) {
         if (data.status == "成功"){
         Feng.success("申请成功");

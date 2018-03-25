@@ -1,6 +1,7 @@
 package com.huzp.cmsys.system.dao;
 
 import com.huzp.cmsys.system.entity.ApplyCM;
+import com.huzp.cmsys.util.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,11 @@ public interface ApplyCMDao {
     //保存申请信息
     void saveMes(ApplyCM applyCM);
 
-    //查找所有未曾决策的申请信息
-    List<Map<String,Object>> findAllMes();
+    //获得所有条数记录
+    Integer getTotal();
+
+    //分页查找所有未曾决策的申请信息
+    List<Map<String,Object>> findAllMes(@Param("offset") int offset,@Param("limit") int limit);
 
     //根据id查找某一条Mes
     Map<String,Object> findMesById(Integer id);
