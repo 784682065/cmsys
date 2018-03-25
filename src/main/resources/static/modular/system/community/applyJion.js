@@ -1,4 +1,10 @@
-var applyJion={};
+var  condition="";
+var url ="/applyjoin/?currentPage=1&pageSize=5&condition=";
+
+
+var applyJion={
+
+};
 
 
 /**
@@ -6,7 +12,7 @@ var applyJion={};
  */
 applyJion.search= function () {
 
-
-    $.post();
+    condition = $('#cmname').val();
+    window.location.href=''+url+condition;
 
 }

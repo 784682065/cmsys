@@ -107,7 +107,7 @@ public class StudentCmController extends BaseController {
      * @return
      */
     @RequestMapping(value = {"/applyjoin","/"})
-    public String applyJoin(Model model,Page<Map<String,Object>> page){
+    public String applyJoin(Model model,Page<Map<String,Object>> page,String condition){
 
 
         Integer total = applyCMDao.getTotalCM();
@@ -116,10 +116,11 @@ public class StudentCmController extends BaseController {
         int limit = page.getPageSize();
 
         //分页查找出所有的社团
-        List<Map<String, Object>> allCM = applyCMDao.findAllCM(offset,limit);
+        List<Map<String, Object>> allCM = applyCMDao.findAllCM(offset,limit,condition);
         page.setDatas(allCM);
 
         model.addAttribute("page",page);
+        model.addAttribute("condition",condition);
 
 
         return "/system/community/applyJoin";

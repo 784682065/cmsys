@@ -114,6 +114,11 @@
         t.cmdirection,
         (select count(*)     from   communitymember A WHERE A.communityid = t.id) AS  total
         from   community t
+        <where>
+            <if test="condition != null and condition != '' ">
+                cmname LIKE CONCAT('%',#{condition},'%')
+            </if>
+        </where>
         order by id  DESC
         limit #{offset},#{limit}
     </select>

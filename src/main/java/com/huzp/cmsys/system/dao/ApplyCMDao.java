@@ -51,6 +51,6 @@ public interface ApplyCMDao {
     Integer getTotalCM();
 
     //分页查找出所有的社团
-    List<Map<String,Object>> findAllCM(@Param("offset") int offset,@Param("limit") int limit);
+    List<Map<String,Object>> findAllCM(@Param("offset") int offset,@Param("limit") int limit,@Param("condition") String condition);
 
 }

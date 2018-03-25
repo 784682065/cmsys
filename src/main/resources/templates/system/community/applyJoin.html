@@ -20,15 +20,16 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <input id="title" name="title" type="text" class="form-control" placeholder="请输入社团名字">
+                        <input id="cmname" name="title" type="text" class="form-control" placeholder="请输入社团名字">
                     </div>
                 </div>
             </div>
-            <div class="row text-center" style="margin:20px;">
-                <button onclick="applyJion.search()" aria-hidden="true" data-dismiss="alert" class="btn btn-primary  btn-md" type="button" style="width: 100px" id="search">查询</button>
+            <div class="row text-center" style="margin:20px">
+                <button onclick="applyJion.search()" class="btn btn-primary  btn-md" type="button" style="width: 100px" id="search">查询</button>
             </div>
         </div>
     </div>
+    <script src="/modular/system/community/applyJion.js"></script>
 
     <div class="ibox-content"></div>
     <table class="table table-bordered">
@@ -68,24 +69,24 @@
                 </div>
             </li>
             <li>
-                <a th:href="@{/applyjoin/(currentPage=1,pageSize=${page.pageSize},condition=${condition} )}" aria-label="Previous">
+                <a id="condition" th:href="@{/applyjoin/(currentPage=1,pageSize=${page.pageSize},condition=${condition} )}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;首页</span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/applyjoin/(currentPage=${page.currentPage-1},pageSize=${page.pageSize} )}" aria-label="Previous">
+                <a th:href="@{/applyjoin/(currentPage=${page.currentPage-1},pageSize=${page.pageSize},condition=${condition} )}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;上一页</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/applyjoin/(currentPage=${page.currentPage+1},pageSize=${page.pageSize} )}" aria-label="Next">
+                <a th:href="@{/applyjoin/(currentPage=${page.currentPage+1},pageSize=${page.pageSize},condition=${condition} )}" aria-label="Next">
                     <span aria-hidden="true">下一页&raquo;</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/applyjoin/(currentPage=${page.totalPageCount},pageSize=${page.pageSize} )}" aria-label="Next">
+                <a th:href="@{/applyjoin/(currentPage=${page.totalPageCount},pageSize=${page.pageSize},condition=${condition} )}" aria-label="Next">
                     <span aria-hidden="true">尾页&raquo;</span>
                 </a>
             </li>
@@ -109,7 +110,8 @@
     <!--分页部分end -->
 
 
+
 </div>
-<script src="/modular/system/community/applyJoin.js"></script>
+
 </body>
 </html>
