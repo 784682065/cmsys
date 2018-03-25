@@ -23,6 +23,7 @@ public class Page<T> {
     private int currentPage = 1; // 当前第几页
     private int pageSize = 5; // 每页记录数
     private Enum<Sort> sort;
+    private String condition;
 
     public void gotoPreviousPage() // 向前翻页
     {
@@ -132,6 +133,14 @@ public class Page<T> {
 
     public void setSort(Enum<Sort> sort) {
         this.sort = sort;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
     /**

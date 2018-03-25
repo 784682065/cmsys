@@ -100,6 +100,23 @@
         t.cmname = #{name}
     </select>
 
+    <select id="getTotalCM" resultType="integer">
+        select count(*)
+        from   community
+        order by id  DESC
+    </select>
+
+
+    <select id="findAllCM" resultType="map">
+        select
+        t.id,
+        t.cmname,
+        t.cmdirection,
+        (select count(*)     from   communitymember A WHERE A.communityid = t.id) AS  total
+        from   community t
+        order by id  DESC
+        limit #{offset},#{limit}
+    </select>
 
 
 </mapper>

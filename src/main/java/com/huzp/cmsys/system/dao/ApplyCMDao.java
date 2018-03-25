@@ -47,5 +47,10 @@ public interface ApplyCMDao {
     //根据社团名字查找社团id
     Integer findCmIdByName(String name);
 
+    //查找所有社团的数量
+    Integer getTotalCM();
+
+    //分页查找出所有的社团
+    List<Map<String,Object>> findAllCM(@Param("offset") int offset,@Param("limit") int limit);
 
 }

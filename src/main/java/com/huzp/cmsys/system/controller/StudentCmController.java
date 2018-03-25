@@ -7,15 +7,18 @@ import com.huzp.cmsys.system.dao.ApplyCMDao;
 import com.huzp.cmsys.system.dao.UserDao;
 import com.huzp.cmsys.system.entity.ApplyCM;
 import com.huzp.cmsys.system.entity.User;
+import com.huzp.cmsys.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: huzp
@@ -40,7 +43,7 @@ public class StudentCmController extends BaseController {
      * @author huzp
      * @description 打开申请个人社团页面
      */
-    @RequestMapping("createcm")
+    @RequestMapping("/createcm")
     public String createcm(Model model) {
 
         Integer userid = ShiroKit.getUser().getId();
@@ -56,12 +59,10 @@ public class StudentCmController extends BaseController {
      * 保存申请信息
      * @return
      */
-    @RequestMapping("applyCM")
+    @RequestMapping("/applyCM")
     @ResponseBody
     public JSONObject applyCM(){
         JSONObject jsonObject = new JSONObject();
-
-
 
         ApplyCM applyCM= new ApplyCM();
 
@@ -98,4 +99,30 @@ public class StudentCmController extends BaseController {
 
         return  jsonObject;
     }
+
+    /**
+     * @author hzp
+     * @param
+     * @description 打开申请加入社团页面
+     * @return
+     */
+    @RequestMapping(value = {"/applyjoin","/"})
+    public String applyJoin(Model model,Page<Map<String,Object>> page){
+
+
+        Integer total = applyCMDao.getTotalCM();
+        page.setTotalCount(total);
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
+
+        //分页查找出所有的社团
+        List<Map<String, Object>> allCM = applyCMDao.findAllCM(offset,limit);
+        page.setDatas(allCM);
+
+        model.addAttribute("page",page);
+
+
+        return "/system/community/applyJoin";
+    }
+
 }

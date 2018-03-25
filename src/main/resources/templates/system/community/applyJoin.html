@@ -5,23 +5,41 @@
 <!-- layout文件路径-->
 <head>
     <meta charset="UTF-8">
-    <title>我的社团</title>
+    <title>申请加入社团</title>
 </head>
 <body>
 <div layout:fragment="content">
     <div class="ibox-title" style="text-align: center">
-        <h2>我的社团</h2>
+        <h2>申请加入社团</h2>
     </div>
+
+
+    <div class="ibox-content ">
+        <div class="panel panel-primary">
+            <div class="panel-heading">社团名字查询</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input id="title" name="title" type="text" class="form-control" placeholder="请输入社团名字">
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center" style="margin:20px;">
+                <button onclick="applyJion.search()" aria-hidden="true" data-dismiss="alert" class="btn btn-primary  btn-md" type="button" style="width: 100px" id="search">查询</button>
+            </div>
+        </div>
+    </div>
+
     <div class="ibox-content"></div>
     <table class="table table-bordered">
         <thead>
         <tr>
             <th>#</th>
             <th>社团名字</th>
-            <th>我的职位</th>
+            <th>社团方向</th>
+            <th>社团人数</th>
             <th>查看</th>
-            <th>退出</th>
-            <th>群发邮件</th>
+            <th>申请</th>
         </tr>
         </thead>
         <tbody>
@@ -29,12 +47,13 @@
             <a th:if="${null != iterStat.size}">
                 <td th:text="${iterStat.count}">id</td>
                 <td th:text="${Mes.cmname}">社团名字</td>
-                <td th:text="${Mes.myposition}">我的职位</td>
+                <td th:text="${Mes.cmdirection}">社团方向</td>
+                <td th:text="${Mes.total}">社团人数</td>
                 <td><a >查看</a></td>
-                <td><a >退出</a></td>
-                <td><a >群发邮件</a></td>
+                <td><a >申请</a></td>
             </a>
         </tr>
+
         </tbody>
     </table>
 
@@ -49,24 +68,24 @@
                 </div>
             </li>
             <li>
-                <a th:href="@{/mycm/(currentPage=1,pageSize=${page.pageSize} )}" aria-label="Previous">
+                <a th:href="@{/applyjoin/(currentPage=1,pageSize=${page.pageSize},condition=${condition} )}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;首页</span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/mycm/(currentPage=${page.currentPage-1},pageSize=${page.pageSize} )}" aria-label="Previous">
+                <a th:href="@{/applyjoin/(currentPage=${page.currentPage-1},pageSize=${page.pageSize} )}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;上一页</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/mycm/(currentPage=${page.currentPage+1},pageSize=${page.pageSize} )}" aria-label="Next">
+                <a th:href="@{/applyjoin/(currentPage=${page.currentPage+1},pageSize=${page.pageSize} )}" aria-label="Next">
                     <span aria-hidden="true">下一页&raquo;</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/mycm/(currentPage=${page.totalPageCount},pageSize=${page.pageSize} )}" aria-label="Next">
+                <a th:href="@{/applyjoin/(currentPage=${page.totalPageCount},pageSize=${page.pageSize} )}" aria-label="Next">
                     <span aria-hidden="true">尾页&raquo;</span>
                 </a>
             </li>
@@ -78,9 +97,9 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a th:href="@{/mycm/(currentPage=${page.currentPage},pageSize=5 )}">5</a></li>
-                        <li><a th:href="@{/mycm/(currentPage=${page.currentPage},pageSize=10 )}">10</a></li>
-                        <li><a th:href="@{/mycm/(currentPage=${page.currentPage},pageSize=20 )}">20</a></li>
+                        <li><a th:href="@{/applyjoin/(currentPage=${page.currentPage},pageSize=5 )}">5</a></li>
+                        <li><a th:href="@{/applyjoin/(currentPage=${page.currentPage},pageSize=10 )}">10</a></li>
+                        <li><a th:href="@{/applyjoin/(currentPage=${page.currentPage},pageSize=20 )}">20</a></li>
                     </ul>
                 </div>
                 <!-- 调整pageSize结束 -->
@@ -90,7 +109,7 @@
     <!--分页部分end -->
 
 
-
 </div>
+<script src="/modular/system/community/applyJoin.js"></script>
 </body>
 </html>

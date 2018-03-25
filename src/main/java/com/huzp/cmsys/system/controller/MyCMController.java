@@ -42,8 +42,9 @@ public class MyCMController {
         int limit = page.getPageSize();
 
         List<Map<String, Object>> myCM = myCMDao.findMyCM(username,offset,limit);
+        page.setDatas(myCM);
 
-        model.addAttribute("myCM",myCM);
+        model.addAttribute("page",page);
 
 
         return  "/system/community/myCommunity";
