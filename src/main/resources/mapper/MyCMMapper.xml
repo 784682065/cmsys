@@ -8,7 +8,9 @@
         SELECT
         t.id,
         (SELECT  C.cmname FROM     community C  WHERE C.id = t.communityid) AS cmname,
-        (SELECT  D.position FROM  position   D  WHERE D.id = t.communityposition) AS myposition
+        (SELECT  D.position FROM  position   D  WHERE D.id = t.communityposition) AS myposition,
+        communityid,
+        communityposition
         FROM
         communitymember t
         WHERE

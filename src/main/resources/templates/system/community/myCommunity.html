@@ -30,7 +30,7 @@
                 <td th:text="${iterStat.count}">id</td>
                 <td th:text="${Mes.cmname}">社团名字</td>
                 <td th:text="${Mes.myposition}">我的职位</td>
-                <td><a >查看</a></td>
+                <td><a th:href="@{'/checkMycm?cmid='+${Mes.communityid}+'&position='+${Mes.communityposition}}">查看</a></td>
                 <td><a >退出</a></td>
                 <td><a >群发邮件</a></td>
             </a>

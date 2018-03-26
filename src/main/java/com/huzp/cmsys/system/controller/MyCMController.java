@@ -1,5 +1,6 @@
 package com.huzp.cmsys.system.controller;
 
+import com.huzp.cmsys.base.BaseController;
 import com.huzp.cmsys.shiro.ShiroKit;
 import com.huzp.cmsys.system.dao.MyCMDao;
 import com.huzp.cmsys.util.Page;
@@ -20,7 +21,7 @@ import java.util.Map;
  */
 
 @Controller
-public class MyCMController {
+public class MyCMController extends BaseController{
 
     @Autowired
     MyCMDao myCMDao;
@@ -48,6 +49,36 @@ public class MyCMController {
 
 
         return  "/system/community/myCommunity";
+    }
+
+    /**
+      * @author hzp
+      * @param
+      * @description
+      * @return
+      */
+    @RequestMapping("/checkMycm")
+    public String checkMycm(){
+
+        String cmid = super.getPara("cmid");
+        String position = super.getPara("position");
+
+        //社长的编辑页面
+        if( null != position && position.equals("1") ){
+
+
+
+            return "/system/community/editMyCM";
+        }else if (null != position && position.equals("2")){
+            //普通社员的
+
+            return "/system/community/editMyCM";
+        }else {
+
+            return "/404";
+        }
+
+
     }
 
 }

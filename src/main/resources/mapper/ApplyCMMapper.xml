@@ -72,13 +72,14 @@
 
     <insert id="addCommunity" parameterType="map">
         INSERT INTO community
-        (cmname, cmdirection, createuser, createtime)
+        (cmname, cmdirection, createuser, createtime,applyreason)
         VALUES
         (
             #{cmname},
             #{cmdirection},
             #{applicant},
-            (select now())
+            (select now()),
+            #{applyreason}
         )
 
     </insert>
