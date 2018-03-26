@@ -42,7 +42,7 @@ Com.applyjoinCommuntiy= function () {
                 Feng.success("申请成功");
                 $(location).attr('href', '/applyjoin');
             }else {
-                Feng.error("申请失败");
+                Feng.error("你已经申请过该社团");
                 $(location).attr('href', '/applyjoin');
             }
     });
@@ -50,3 +50,24 @@ Com.applyjoinCommuntiy= function () {
 
 
 
+/**
+ * 驳回加入社团申请
+ */
+Com.rejectMyApply = function () {
+
+    $.ajax({
+        type: "POST",
+        url:  "/rejectMyApply",
+        data: "mesId="+$("#mesId").text(),
+        success: function(data){
+
+            if (data.status == "成功"){
+                Feng.success(data.status);
+                $(location).attr('href', '/magmy');
+            }else {
+                Feng.error(data.status);
+                $(location).attr('href', '/magmy');
+            }
+        }
+    });
+}

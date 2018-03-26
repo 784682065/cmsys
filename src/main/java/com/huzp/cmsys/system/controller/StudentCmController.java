@@ -155,19 +155,30 @@ public class StudentCmController extends BaseController {
     public JSONObject applyjoinCM(){
 
         JSONObject jsonObject =new JSONObject();
+        int username = Integer.parseInt(ShiroKit.getUser().getUsername());
 
         //获取申请值
         Map<String, Object> applyForm = HttpKit.getRequestParameters();
 
-        applyForm.put("applicant",Integer.parseInt(ShiroKit.getUser().getUsername()));
-        applyForm.put("status",1);
-        applyForm.put("type","申请加入社团");
-        applyForm.put("sign","NOTDECIDE");
 
-        //将申请存入数据库
-        applyCMDao.applyjoinCM(applyForm);
+        //判断是否加入过社团
+        Integer cmid = Integer.parseInt((String)applyForm.get("cmid"));
+        List<Map<String, Object>> myCm = applyCMDao.findMyCm(cmid, username);
 
-        jsonObject.put("status","成功");
+        if (myCm.isEmpty()){
+            applyForm.put("applicant",username);
+            applyForm.put("status",1);
+            applyForm.put("type","申请加入社团");
+            applyForm.put("sign","NOTDECIDE");
+
+            //将申请存入数据库
+            applyCMDao.applyjoinCM(applyForm);
+
+            jsonObject.put("status","成功");
+        }else {
+            jsonObject.put("status","失败");
+        }
+
 
         return  jsonObject;
     }

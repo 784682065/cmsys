@@ -93,13 +93,16 @@ public class MagCmController extends BaseController{
         String sign="FAILUR";
         applyCMDao.UpdateSignById(id,sign);
 
-
         jsonObject.put("status","成功");
 
         return jsonObject;
     }
 
 
+    /**
+     *
+     * @return
+     */
     @RequestMapping("/passApply")
     @ResponseBody
     public JSONObject passApply(){
@@ -136,4 +139,106 @@ public class MagCmController extends BaseController{
         return jsonObject;
     }
 
+
+    /**
+      * @author hzp
+      * @param
+      * @description 打开管理我的社团申请页面
+      * @return
+      */
+    @RequestMapping(value= {"/magmy","/"})
+    public String magmy(Model model,Page<List<Map<String,Object>>> page){
+
+        int username = Integer.parseInt(ShiroKit.getUser().getUsername());
+
+        Integer total = applyCMDao.getMyTotal(username);
+
+        page.setTotalCount(total);
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
+
+        List<Map<String,Object>> allMes = applyCMDao.findAllMyMes(offset,limit,username);
+
+
+        model.addAttribute("allMes",allMes);
+        model.addAttribute("page",page);
+
+
+
+        return  "/system/community/magMy";
+    }
+
+    /**
+     * 查看具体的申请消息
+     * @param id
+     * @param model
+     * @return
+     */
+    @RequestMapping("/checkMyApply")
+    public String checkMyAppl(@RequestParam("id") Integer id,Model model){
+
+        //查出mes
+        Map<String, Object> mesById = applyCMDao.findMesById(id);
+
+        model.addAttribute("mesById",mesById);
+
+        //更改status
+        applyCMDao.UpdateStatusById(id);
+
+        return "/system/community/checkMyMes";
+    }
+
+    /**
+     * 拒绝加入社团申请通过
+     * @param id
+     * @return
+     */
+    @RequestMapping("/rejectMyApply")
+    @ResponseBody
+    public JSONObject rejectMyApply(@RequestParam("mesId") Integer id){
+
+        String sign="FAILUR";
+        applyCMDao.UpdateSignById(id,sign);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status","成功");
+        return jsonObject;
+    }
+
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("/passMyApply")
+    @ResponseBody
+    public JSONObject passMyApply(){
+
+        JSONObject jsonObject = new JSONObject();
+
+        super.getPara("name");
+
+
+
+        Map<String, Object> CommunityMes = super.getRequestParameters();
+
+        //1.获取社团id
+        Integer cmId = applyCMDao.findCmIdByName((String) CommunityMes.get("cmname"));
+        CommunityMes.put("cmId",cmId);
+
+
+        //2.社团普通人员表插入信息
+        applyCMDao.addMember(CommunityMes);
+
+        //3.发送邮件通知
+        // TODO: 2018/3/23   发送邮件通知
+
+        //4.修改申请消息状态为成功
+        String sign="SUCCESS";
+        applyCMDao.UpdateSignById((Integer.parseInt((String) CommunityMes.get("id"))),sign);
+
+
+        jsonObject.put("status","成功");
+
+        return jsonObject;
+    }
 }

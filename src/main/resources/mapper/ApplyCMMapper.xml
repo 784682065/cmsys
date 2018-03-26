@@ -22,6 +22,7 @@
         select count(*)
         from      cmapply
         WHERE  sign = 'NOTDECIDE'
+        and type='申请个人社团'
         order by id  DESC
 
     </select>
@@ -140,8 +141,51 @@
             (select createuser from community b where b.id=#{cmid})
         )
 
-
     </insert>
+
+    <select id="getMyTotal" resultType="integer">
+        SELECT count(*)
+        FROM      cmapply
+        WHERE  sign = 'NOTDECIDE'
+        AND type='申请加入社团'
+        AND receiever =#{username}
+        order by id  DESC
+    </select>
+
+
+    <select id="findAllMyMes" parameterType="int" resultType="map">
+         SELECT  id,type, cmname, applyreason, cmdirection,
+        (select a.personname from user a WHERE  a.username = t.applicant)  applicant,
+         createtime, status,sign
+        FROM  cmapply t
+        WHERE  sign = 'NOTDECIDE'
+        AND  type='申请加入社团'
+        AND receiever =#{username}
+        order by id  DESC
+        limit #{offset},#{limit}
+
+    </select>
+
+
+
+    <insert id="addMember" parameterType="map">
+        INSERT INTO  communitymember
+        (username, communityid, communityposition)
+        VALUES (
+         #{applicant},
+         #{cmId},
+         2
+        )
+    </insert>
+
+    <select id="findMyCm" parameterType="int" resultType="map">
+        SELECT id
+        FROM
+        communitymember
+        WHERE communityid = #{cmid}
+        AND  username =  #{username}
+    </select>
+
 
 
 </mapper>

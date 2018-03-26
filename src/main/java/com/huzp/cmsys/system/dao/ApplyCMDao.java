@@ -56,4 +56,18 @@ public interface ApplyCMDao {
     //申请加入社团信息
     void applyjoinCM(Map<String,Object> map);
 
+    //获得所有我的社团信息条数
+    Integer getMyTotal(Integer username);
+
+    //分页显示申请我的社团的所有数据
+    List<Map<String,Object>> findAllMyMes(@Param("offset") int offset,@Param("limit") int limit,@Param("username") int username);
+
+
+    //添加普通成员到社团
+    void addMember(Map<String,Object> addM);
+
+
+    //查询是否已经加入社团
+    List<Map<String, Object>> findMyCm(@Param("cmid") int cmid,@Param("username") int username);
+
 }

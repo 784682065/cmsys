@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/_container">
+<!-- layout文件路径-->
+<head>
+    <meta charset="UTF-8">
+    <title>管理我的社团申请</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="ibox-title" style="text-align: center">
+        <h2>管理我的社团申请</h2>
+    </div>
+    <div class="ibox-content"></div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>申请类型</th>
+            <th>申请人</th>
+            <th>查看</th>
+            <th>是否审阅</th>
+            <th>创建时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Mes,iterStat: ${allMes}">
+            <a th:if="${null != iterStat.size}">
+                <td th:text="${iterStat.count}">id</td>
+                <td th:text="${Mes.type}">申请类型</td>
+                <td th:text="${Mes.applicant}">申请人</td>
+                <td><a th:href="@{'/checkMyApply?id='+${Mes.id}}">查看</a></td>
+                <td th:text="${Mes.status}">是否已读</td>
+                <td th:text="${Mes.createtime}">创建时间</td>
+            </a>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+     <!--分页部分start -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <div>
+                    总条数：<span th:text="${page.getTotalCount()}"></span>&nbsp;&nbsp;
+                    总页数：<span th:text="${page.getTotalPageCount()}"></span>&nbsp;&nbsp;
+                    当前页码：<span th:text="${page.getCurrentPage()}"></span>
+                </div>
+            </li>
+            <li>
+                <a th:href="@{/magapply/(currentPage=1,pageSize=${page.pageSize} )}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;首页</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/magapply/(currentPage=${page.currentPage-1},pageSize=${page.pageSize} )}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;上一页</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/magapply/(currentPage=${page.currentPage+1},pageSize=${page.pageSize} )}" aria-label="Next">
+                    <span aria-hidden="true">下一页&raquo;</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/magapply/(currentPage=${page.totalPageCount},pageSize=${page.pageSize} )}" aria-label="Next">
+                    <span aria-hidden="true">尾页&raquo;</span>
+                </a>
+            </li>
+
+            <li>
+                <!-- 调整pageSize start -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text=" '每页显示:' + ${page.pageSize}">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/magapply/(currentPage=${page.currentPage},pageSize=5 )}">5</a></li>
+                        <li><a th:href="@{/magapply/(currentPage=${page.currentPage},pageSize=10 )}">10</a></li>
+                        <li><a th:href="@{/magapply/(currentPage=${page.currentPage},pageSize=20 )}">20</a></li>
+                    </ul>
+                </div>
+                <!-- 调整pageSize结束 -->
+            </li>
+        </ul>
+    </nav>
+     <!--分页部分end -->
+
+
+    </div>
+    </body>
+    </html>
