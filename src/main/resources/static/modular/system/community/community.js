@@ -34,3 +34,19 @@ Com.rejectApply = function () {
     });
 }
 
+
+Com.applyjoinCommuntiy= function () {
+
+        $.post("/applyjoinCM",$("#applyForm").serialize(),function (data) {
+            if (data.status == "成功"){
+                Feng.success("申请成功");
+                $(location).attr('href', '/applyjoin');
+            }else {
+                Feng.error("申请失败");
+                $(location).attr('href', '/applyjoin');
+            }
+    });
+}
+
+
+

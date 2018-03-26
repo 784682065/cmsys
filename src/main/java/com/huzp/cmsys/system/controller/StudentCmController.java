@@ -3,6 +3,7 @@ package com.huzp.cmsys.system.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.huzp.cmsys.base.BaseController;
 import com.huzp.cmsys.shiro.ShiroKit;
+import com.huzp.cmsys.support.HttpKit;
 import com.huzp.cmsys.system.dao.ApplyCMDao;
 import com.huzp.cmsys.system.dao.UserDao;
 import com.huzp.cmsys.system.entity.ApplyCM;
@@ -126,4 +127,48 @@ public class StudentCmController extends BaseController {
         return "/system/community/applyJoin";
     }
 
+
+    /**
+       * @author hzp
+       * @param
+       * @description 打开申请加入页面
+       * @return
+      */
+    @RequestMapping("/join")
+    public String join(Model model, @RequestParam("id") Integer cmid,@RequestParam("cmname") String cmname){
+
+        Integer userid = ShiroKit.getUser().getId();
+        User user = userDao.findById(userid);
+
+        model.addAttribute("user", user);
+        model.addAttribute("cmname",cmname);
+        model.addAttribute("cmid",cmid);
+
+
+
+        return  "/system/community/applyjoinCM";
+    }
+
+
+    @RequestMapping("/applyjoinCM")
+    @ResponseBody
+    public JSONObject applyjoinCM(){
+
+        JSONObject jsonObject =new JSONObject();
+
+        //获取申请值
+        Map<String, Object> applyForm = HttpKit.getRequestParameters();
+
+        applyForm.put("applicant",Integer.parseInt(ShiroKit.getUser().getUsername()));
+        applyForm.put("status",1);
+        applyForm.put("type","申请加入社团");
+        applyForm.put("sign","NOTDECIDE");
+
+        //将申请存入数据库
+        applyCMDao.applyjoinCM(applyForm);
+
+        jsonObject.put("status","成功");
+
+        return  jsonObject;
+    }
 }

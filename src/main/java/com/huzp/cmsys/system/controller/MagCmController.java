@@ -2,8 +2,10 @@ package com.huzp.cmsys.system.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.huzp.cmsys.base.BaseController;
+import com.huzp.cmsys.shiro.ShiroKit;
 import com.huzp.cmsys.system.dao.ApplyCMDao;
 import com.huzp.cmsys.system.dao.PageDao;
+import com.huzp.cmsys.system.dao.UserDao;
 import com.huzp.cmsys.system.entity.ApplyCM;
 import com.huzp.cmsys.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class MagCmController extends BaseController{
     @Autowired
     ApplyCMDao applyCMDao;
 
+    @Autowired
+    UserDao userDao;
 
     @Autowired
     PageDao pageDao;
@@ -123,6 +127,9 @@ public class MagCmController extends BaseController{
 
         //4.修改申请消息状态为成功
         applyCMDao.UpdateSignById((Integer.parseInt((String) CommunityMes.get("id"))),sign);
+
+        //5.将身份修改为社长
+        userDao.updateRole( Integer.parseInt((String)CommunityMes.get("applicant")));
 
         jsonObject.put("status","成功");
 

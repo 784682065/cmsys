@@ -36,4 +36,12 @@
         WHERE  u.username = #{username}
     </select>
 
+    <update id="updateRole" parameterType="integer">
+        UPDATE user
+        SET role = '10001'
+        WHERE
+        username = #{username}
+
+    </update>
+
 </mapper>

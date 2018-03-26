@@ -33,6 +33,7 @@
          createtime, status,sign
         FROM  cmapply t
         WHERE  sign = 'NOTDECIDE'
+        AND  type='申请个人社团'
         order by id  DESC
         limit #{offset},#{limit}
     </select>
@@ -122,6 +123,25 @@
         order by id  DESC
         limit #{offset},#{limit}
     </select>
+
+    <insert id="applyjoinCM" parameterType="map">
+        INSERT INTO  cmapply
+        (type, cmname, applyreason, cmdirection, applicant, createtime, status, sign,receiever)
+        VALUES
+        (
+            #{type},
+            (SELECT  cmname FROM  community a WHERE a.id= #{cmid}),
+            #{applyreason},
+            #{cmdirection},
+            #{applicant},
+            (select now()),
+            #{status},
+            #{sign},
+            (select createuser from community b where b.id=#{cmid})
+        )
+
+
+    </insert>
 
 
 </mapper>

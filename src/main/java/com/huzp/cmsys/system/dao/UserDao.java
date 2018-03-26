@@ -23,4 +23,7 @@ public interface UserDao {
 
     //根据username 查找用户名
     String findByUsername(Integer username);
+
+    //身份修改为社长
+    void updateRole (Integer username);
 }
