@@ -3,6 +3,12 @@
 <mapper namespace="com.huzp.cmsys.system.dao.InformDao">
 
 
+    <select id="getTotal" resultType="int">
+        select count(*)
+        FROM inform
+    </select>
+
+
     <select id="getTotalCmInform" parameterType="integer" resultType="integer">
        select count(*)
         FROM inform
@@ -10,6 +16,13 @@
         cmid=#{id}
         AND
         informType = 2
+    </select>
+
+    <select id="getTotalNotices" resultType="integer">
+        select count(*)
+        FROM inform
+        WHERE
+        informType = 1
     </select>
 
 
@@ -31,20 +44,21 @@
 
     <insert id="saveNotices" parameterType="map">
         INSERT INTO inform
-        (informType, informTitle, informContent,createuser,createtime)
+        (informType, informTitle, informContent,createuser,createtime,cmid)
         VALUE (
         #{informType},
         #{informTitle},
         #{informContent},
         #{username},
-        (select now())
+        (select now()),
+        0
         )
     </insert>
 
 
     <select id="cmInform" parameterType="integer" resultType="map">
         SELECT  id,
-        (CASE informType  WHEN 1 THEN '活动' WHEN 2 THEN '公告' ELSE '其他' END )  as informType,
+        (CASE informType  WHEN 1 THEN '公告' WHEN 2 THEN '活动' ELSE '其他' END )  as informType,
         informTitle, informContent,createuser,createtime,
         CONCAT( (select  t.cmname FROM community t WHERE  t.id =cmid),'社团') as cmid
         FROM inform
@@ -56,6 +70,29 @@
         limit #{offset},#{limit}
     </select>
 
+
+    <select id="Allnotices" parameterType="integer" resultType="map">
+        SELECT  id,
+        (CASE informType  WHEN 1 THEN '公告' WHEN 2 THEN '活动' ELSE '其他' END )  as informType,
+        informTitle, informContent,createuser,createtime,
+        '管理员' as cmid
+        FROM inform
+        WHERE
+        informType = 1
+        order by id  DESC
+        limit #{offset},#{limit}
+
+    </select>
+
+    <select id="Allmes" parameterType="int" resultType="map">
+        SELECT  id,
+        (CASE informType  WHEN 1 THEN '公告' WHEN 2 THEN '活动' ELSE '其他' END )  as informType,
+        informTitle, informContent,createuser,createtime,
+        (CASE cmid  WHEN 0 THEN '管理员'  ELSE CONCAT((select  t.cmname FROM community t WHERE  t.id =cmid),'社团') END ) as cmid
+        FROM inform
+        order by id  DESC
+        limit #{offset},#{limit}
+    </select>
 
 
 </mapper>

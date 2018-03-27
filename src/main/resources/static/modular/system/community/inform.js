@@ -3,7 +3,7 @@ var inform = {
 //保存信息
     publish: function () {
 
-        id1 =$.trim($("#cmid").val())
+        id1 =$.trim($("#cmid").val());
         console.log($.trim($("#cmid").val()));
         $("form").bootstrapValidator('validate'); //提交验证
 
@@ -35,6 +35,14 @@ var inform = {
     delete: function () {
         $("#informTitle").val("");
         $("#informContent").val("");
+    },
+
+    /*查看*/
+
+    findcmform : function () {
+
+        id1 =$.trim($("#id").val());
+
     }
 
 };

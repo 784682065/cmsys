@@ -18,9 +18,10 @@ var notices = {
                 if ("成功" == data.status) {
                     Feng.success("成功");
                     //直接查看全部公告
-                    // $(location).attr('href', '/allnotices');
+                    $(location).attr('href', '/allnotices');
                 } else {
                     Feng.error("失败");
+                    $(location).attr('href', '/allnotices');
                     //失败跳转
                     }
                     });

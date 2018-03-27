@@ -15,8 +15,14 @@ import java.util.Map;
 @Component
 public interface InformDao {
 
+    //获得所有活动与通知
+    Integer getTotal();
+
     //获得某社团所有活动
     Integer getTotalCmInform(Integer id);
+
+    //获得所有通知
+    Integer getTotalNotices();
 
     //保存活动信息到信息表
     void saveInform(Map<String,Object> map);
@@ -26,4 +32,11 @@ public interface InformDao {
 
     //查找某个社团的所有信息
     List<Map<String,Object>> cmInform(@Param("cmid") int cmid , @Param("offset") int offset, @Param("limit") int limit);
+
+    //查找所有公告
+    List<Map<String,Object>> Allnotices(@Param("offset") int offset, @Param("limit") int limit);
+
+    //查找所有信息
+    List<Map<String,Object>> Allmes(@Param("offset") int offset, @Param("limit") int limit);
+
 }

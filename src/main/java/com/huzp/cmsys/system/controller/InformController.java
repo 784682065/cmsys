@@ -1,7 +1,6 @@
 package com.huzp.cmsys.system.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import com.huzp.cmsys.base.BaseController;
 import com.huzp.cmsys.shiro.ShiroKit;
 import com.huzp.cmsys.system.dao.InformDao;
@@ -97,7 +96,6 @@ public class InformController extends BaseController {
         informDao.saveNotices(notices);
 
         jsonObject.put("status","成功");
-
         return  jsonObject;
     }
 
@@ -135,11 +133,53 @@ public class InformController extends BaseController {
       * @description 全部的公告
       * @return
       */
-    @RequestMapping("allnotices")
-    public String allnotices(){
+    @RequestMapping(value = {"/allnotices","/"})
+    public String allnotices(Model model,Page<Map<String,Object>> page){
+
+
+        //通知的全部条数
+        Integer total = informDao.getTotalNotices();
+
+        page.setTotalCount(total);
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
+
+        List<Map<String, Object>> Allnotices = informDao.Allnotices(offset,limit);
+        page.setDatas(Allnotices);
+
+        model.addAttribute("page",page);
+
+
+        return "/system/community/allnotices";
+    }
+
+
+
+    /**
+      * @author hzp
+      * @param
+      * @description 打开所有mes 数据页面
+      * @return
+      */
+    @RequestMapping("/allinform")
+    public String  allmes(Model model,Page<Map<String,Object>> page){
+
+        //通知的全部条数
+        Integer total = informDao.getTotal();
+
+        page.setTotalCount(total);
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
+
+        List<Map<String, Object>> Allnotices = informDao.Allmes(offset,limit);
+        page.setDatas(Allnotices);
+
+        model.addAttribute("page",page);
+
 
         return "/system/community/allmes";
     }
+
 
 
 }
