@@ -28,4 +28,23 @@
     </select>
 
 
+    <select id="findCM" resultType="map">
+        SELECT
+        id,cmname,cmdirection,createtime,applyreason
+        FROM community
+        WHERE
+        id = #{cmid}
+    </select>
+
+
+    <update id="updateCM" parameterType="map">
+        UPDATE community
+        SET
+        cmdirection =#{cmdirection},
+        applyreason  =#{applyreason}
+        WHERE  id = #{id}
+
+    </update>
+
+
 </mapper>

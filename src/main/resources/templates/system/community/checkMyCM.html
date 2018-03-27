@@ -11,33 +11,33 @@
 <div layout:fragment="content">
     <div class="wrapper wrapper-content animated fadeInRight">
         <!--th:action="@{/editUserinfo(userId=${user.id})} 传参数-->
-        <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="" value="查看活动">
-        <form autocomplete="off"  th:object="${mesById}" id="addCommunity">
+        <!--style="position:absolute;left:100px; top:120px;"-->
+        <div style="position:absolute; right:50px; top:50px;">
+            <input  type="button" style=" width:100%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg active"  onclick="" value="查看活动">
+        </div>
+        <form autocomplete="off"  id="addCommunity">
             <div class="ibox-title" style="text-align: center">
                 <h2>查看社团</h2>
-                申请编号: <h3 id="mesId" th:text="${mesById.id}"></h3>
             </div>
             <div class="ibox-content">
                 <div class="ibox-content bv-form" id="userInfoForm" novalidate="novalidate">
                     <div class="my-form-box  form-horizontal">
-                        <input type="hidden" id="id" value="13770" disabled="disabled">
-                        <input type="hidden" id="sexValue" value="1" disabled="disabled">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group has-feedback">
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label">社团名称</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="cmname" name="cmname" th:attr="value=${mesById.cmname}" type="text"
-                                               data-bv-field="name" disabled="disabled">
+                                        <input class="form-control" id="cmname" name="cmname"  th:attr="value=${cm.cmname}"  disabled="disabled">
+                                        <input th:attr="value=${id}" hidden="hidden">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group has-feedback">
                                     <label class="col-sm-3 control-label">创建时间</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="createtime" name="createtime" th:attr="value=${mesById.createtime}" type="text"
-                                               data-bv-field="name" disabled="disabled">
+                                        <!--th:attr="value=${user.dept}"-->
+                                        <input class="form-control" id="createtime" name="createtime"  th:attr="value=${cm.createtime}" type="text" disabled="disabled" >
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">申请理由</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="applyreason" name="applyreason"  th:text ="${mesById.applyreason}" style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;" disabled="disabled">
+                                        <textarea class="form-control" id="applyreason" name="applyreason"  th:text="${cm.applyreason}" disabled="disabled"  style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;">
                                         </textarea>
                                     </div>
                                 </div>
@@ -56,20 +56,8 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">社团方向</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" id="cmdirection" name="cmdirection"  th:text ="*{cmdirection}"  style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;" disabled="disabled">
+                                        <textarea class="form-control" id="cmdirection" name="cmdirection" th:text="${cm.cmdirection}"  disabled="disabled" style="margin: 0px 1.25px 0px 0px; height: 200px; width: 363px;">
                                         </textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group has-feedback">
-                                    <label class="col-sm-3 control-label">创建者</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" id="name" name="name" th:attr="value=${mesById.account}" type="text"
-                                               data-bv-field="name" disabled="disabled">
-                                        <input type="text" hidden="hidden" th:attr="value=${mesById.applicant} ">
                                     </div>
                                 </div>
                             </div>
@@ -79,23 +67,6 @@
             </div>
         </form>
     </div>
-
-    <script th:inline="javascript">
-        function passApply() {
-
-            var  mes =  /*[[${mesById}]]*/ null;
-
-            $.post("/passApply",mes,function (data) {
-                if (data.status == "成功"){
-                    Feng.success("申请成功");
-                    $(location).attr('href', '/magapply');
-                }else {
-                    Feng.error("创建失败,该社团已经被创建");
-                    $(location).attr('href', '/magapply');
-                }
-            });
-        }
-    </script>
 </div>
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="common/_container">
+<!-- layout文件路径-->
+<head>
+    <meta charset="UTF-8">
+    <title>查看社团</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="ibox-content">
+        <form autocomplete="off">
+            <h4 class="my-title">信息发布</h4>
+            <div class="my-form-box  form-horizontal" style="margin-top: 30px;">
+                <div class="row" style="margin-bottom: 10px">
+                    <label class="control-label col-md-1" for="cmid" id="cmidText">发布社团编号</label>
+                    <div class="col-md-8">
+                        <input type="text" id="cmid" name="cmid" th:attr="value=${id}" class="form-control" disabled="disabled"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px">
+                    <label class="control-label col-md-1" for="informType" id="informTypeText">发布类型</label>
+                    <div class="col-md-8">
+                        <select id="informType" style="width: 210px;height: 35px; font-size: 14px; padding:0 10px;" disabled="disabled">
+                            <option value="1" th:selected="${type == 1}">公告</option>
+                            <option value="2" th:selected="${type == 2}">活动</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px">
+                    <label class="control-label col-md-1" for="informTitle" id="informTitleText">通知标题</label>
+                    <div class=" col-md-10">
+                        <input type="text" id="informTitle" name="informTitle" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px">
+                    <label class="control-label col-md-1" for="informContent" id="informContentText">通知内容</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" name="informContent" id="informContent" rows="8"
+                                  style="resize: none"></textarea>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;margin-top: 100px;" align="center">
+                    <button type="submit" class="btn btn-primary" id="informPublish" onclick="inform.publish()">
+                        通知发布
+                    </button>
+                    <button class="btn btn-warning" id="informClean" onclick="inform.delete()">
+                        清空内容
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/modular/system/community/inform.js"></script>
+</div>
+</body>
+</html>

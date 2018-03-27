@@ -71,3 +71,31 @@ Com.rejectMyApply = function () {
         }
     });
 }
+/**
+ * 更新社团信息
+ */
+Com.updateCM = function () {
+
+
+        $.ajax({
+        type: "POST",
+        url:  "/updateMyCm",
+        data: {id :$("#id").val() , cmdirection:$("#cmdirection").text() ,applyreason:$("#cmdirection").text() },
+        success: function(data){
+            if (data.status == "成功"){
+                Feng.success(data.status);
+                $(location).attr('href', '/mycm');
+            }else {
+                Feng.error(data.status);
+                $(location).attr('href', '/mycm');
+            }
+        }
+    });
+}
+
+/**
+ * 打开活动编辑页面
+ */
+Com.inform =function () {
+    $(location).attr('href', '/inform?id='+$("#id").val());
+}
