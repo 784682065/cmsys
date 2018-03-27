@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huzp.cmsys.system.dao.InformDao">
+
+
+    <select id="getTotalCmInform" parameterType="integer" resultType="integer">
+       select count(*)
+        FROM inform
+        WHERE
+        cmid=#{id}
+        AND
+        informType = 2
+    </select>
+
+
+
+    <insert id="saveInform" parameterType="map">
+
+        INSERT INTO inform
+        (informType, informTitle, informContent, cmid,createuser,createtime)
+        VALUE (
+        #{informType},
+        #{informTitle},
+        #{informContent},
+        #{id},
+        #{username},
+        (select now())
+        )
+
+    </insert>
+
+    <insert id="saveNotices" parameterType="map">
+        INSERT INTO inform
+        (informType, informTitle, informContent,createuser,createtime)
+        VALUE (
+        #{informType},
+        #{informTitle},
+        #{informContent},
+        #{username},
+        (select now())
+        )
+    </insert>
+
+
+    <select id="cmInform" parameterType="integer" resultType="map">
+        SELECT  id,
+        (CASE informType  WHEN 1 THEN '活动' WHEN 2 THEN '公告' ELSE '其他' END )  as informType,
+        informTitle, informContent,createuser,createtime,cmid
+        FROM inform
+        WHERE
+        cmid=#{cmid}
+        AND
+        informType = 2
+        order by id  DESC
+        limit #{offset},#{limit}
+    </select>
+
+
+
+</mapper>

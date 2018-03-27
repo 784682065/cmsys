@@ -1,30 +1,27 @@
-var id1="";
-var inform = {
+
+var notices = {
 //保存信息
     publish: function () {
 
-        id1 =$.trim($("#cmid").val())
-        console.log($.trim($("#cmid").val()));
         $("form").bootstrapValidator('validate'); //提交验证
 
         if ($("form").data('bootstrapValidator').isValid()) { //判断通过后 执行下面代码
 
             /*先进行标题判断，之后再保存*/
             var params = {
-                "id": $.trim($("#cmid").val()),
                 "informType": $.trim($("#informType").val()),
                 "informTitle": $.trim($("#informTitle").val()),
                 "informContent": $.trim($("#informContent").val())
             };
 
-            $.post("/informsave", params, function (data) {
+            $.post("/noticessave", params, function (data) {
                 if ("成功" == data.status) {
                     Feng.success("成功");
-                    $(location).attr('href', '/cminform?cmid='+id1);
+                    //直接查看全部公告
+                    // $(location).attr('href', '/allnotices');
                 } else {
                     Feng.error("失败");
                     //失败跳转
-                    $(location).attr('href', '/cminform?cmid='+id1);
                     }
                     });
         }
