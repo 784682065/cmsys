@@ -126,7 +126,7 @@ public class InformController extends BaseController {
         model.addAttribute("cmid",id1);
 
 
-        return "/system/community/allmes";
+        return "/system/community/cminform";
     }
 
     /**

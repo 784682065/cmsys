@@ -45,7 +45,8 @@
     <select id="cmInform" parameterType="integer" resultType="map">
         SELECT  id,
         (CASE informType  WHEN 1 THEN '活动' WHEN 2 THEN '公告' ELSE '其他' END )  as informType,
-        informTitle, informContent,createuser,createtime,cmid
+        informTitle, informContent,createuser,createtime,
+        CONCAT( (select  t.cmname FROM community t WHERE  t.id =cmid),'社团') as cmid
         FROM inform
         WHERE
         cmid=#{cmid}
