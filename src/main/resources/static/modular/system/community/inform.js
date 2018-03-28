@@ -37,12 +37,9 @@ var inform = {
         $("#informContent").val("");
     },
 
-    /*查看*/
 
-    findcmform : function () {
-
-        id1 =$.trim($("#id").val());
-
+    back : function () {
+        $(location).attr('href', '/allinform');
     }
 
 };

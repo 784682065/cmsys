@@ -20,8 +20,8 @@
             <th>社团名字</th>
             <th>我的职位</th>
             <th>查看</th>
-            <th>退出</th>
-            <th>群发邮件</th>
+            <!--<th>退出</th>-->
+            <!--<th>群发邮件</th>-->
         </tr>
         </thead>
         <tbody>
@@ -31,8 +31,8 @@
                 <td th:text="${Mes.cmname}">社团名字</td>
                 <td th:text="${Mes.myposition}">我的职位</td>
                 <td><a th:href="@{'/checkMycm?cmid='+${Mes.communityid}+'&position='+${Mes.communityposition}}">查看</a></td>
-                <td><a >退出</a></td>
-                <td><a >群发邮件</a></td>
+                <!--<td><a onclick="quitCM()">退出</a></td>-->
+                <!--<td><a >群发邮件</a></td>-->
             </a>
         </tr>
         </tbody>
@@ -88,7 +88,6 @@
         </ul>
     </nav>
     <!--分页部分end -->
-
 
 
 </div>

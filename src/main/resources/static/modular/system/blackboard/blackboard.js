@@ -1,51 +1,16 @@
 $(function () {
-    /**
-     * 成稿 选项卡效果切换
-     */
-    $(".btn-box button").click(function(){
-       $(this).addClass("btn-active").siblings().removeClass("btn-active");
-    });
+
     /**
      * 设置blackboard背景
      */
     $("body").addClass("gray-bg").addClass("blackboard");
 
-    // blackboard.init();
+    blackboard.init();
 });
 
 var blackboard = {
     init: function () {
         getAll();
-    },
-
-
-    /**
-     * 我的稿件点击效果
-     */
-    myreleasectbt: function () {
-
-        $.post("/blackboard/getReleasectbt", function (data) {
-
-            $("#Notice_ModalLabel").html("我的成稿栏");
-
-            createHtml(data.rs, 'releasectbt',6);
-
-        });
-
-    },
-
-    /**
-     * 全部稿件点击效果
-     */
-    allreleasectbt: function () {
-
-        $.post("/blackboard/getALLReleasectbt", function (data) {
-
-            $("#Notice_ModalLabel").html("全部成稿栏");
-
-            createHtml(data.rs, 'releasectbt',7);
-
-        });
     }
 
 
@@ -61,64 +26,38 @@ function getAll() {
         var allrs =data.rs;
 
 
-        //1获取公告
-        createHtml(allrs[0], 'announcement', 1);
+        //1获取活动
+        createHtml(allrs[0], 'inform');
 
         //2获取通知
-        createHtml(allrs[1], 'notices', 2);
+        createHtml(allrs[1], 'notice');
 
-        //3 代表类型为待审稿件
-        createHtml(allrs[2], 'rm', 3);
-
-        //4.类型 为我的稿件
-        createHtml(allrs[3], 'ctbt', 4);
-
-        //5类型为初稿
-        createHtml(allrs[4], 'initalctbt', 5);
-
-        //6类型为我的成稿
-        createHtml(allrs[5], 'releasectbt', 6);
 
     });
 }
 
 
 /**
- * 创建除了通知与公告
+ *
  * @param data 传回的jsonobject
  * @param selector id选择器
- * @param type 传回的类型
  */
-function createHtml(data, selector, type) {
+function createHtml(data, selector) {
     var result = data;
-    var total;
     var size = data.length;
 
-    if(size ===0){
-        total =0 ;
-    }else {
-        total=result[0].TOTAL;
-    }
+
     var html = '';
 
     for (var i = 0; i < size; i++) {
         html += '<li>\n' +
-            '<a  onclick="menuItem(this)" data-url ="/blackboard/check/' + type + '/' + result[i].UUID + '">' +
-            '<span>[' + result[i].CREATE_DATE+']'+"-"+'['+ result[i].AREA + ']-</span><span>' + result[i].TITLE + '</span></a>\n' +
+            '<a  onclick="menuItem(this)" data-url ="/checkInform?id='+ result[i].id + '">' +
+            '<span>[' + result[i].createtime+']'+"-"+'['+ result[i].cmid + ']-</span><span>' + result[i].informTitle + '</span></a>\n' +
             '</li>';
     }
     $('#' + selector).html(html);
 
-    //没有更多稿件或通知隐藏更多按钮
-    if( selector == 'announcement' || selector == 'notices'){
-        if( total <= 3 ){
-            $('#' + selector).parent().parent().find("h5").hide();
-        }
-    }else if(selector == 'rm' || selector == 'ctbt' || selector == 'initalctbt' || selector == 'releasectbt'){
-        if( total <= 6 ){
-            $('#' + selector).parent().parent().parent().find("a.more").hide();
-        }
-    }
+
 }
 
 

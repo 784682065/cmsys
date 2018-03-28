@@ -27,4 +27,10 @@ public interface MyCMDao {
     //更新社团信息
     void  updateCM(Map<String,Object> map);
 
+    //退出社团
+    void  quitMycm(@Param("cmid") int cmid,@Param("username") Integer username);
+
+    //根据社团id 查找社团创建者
+    Integer findCMPosition(int cmid);
+
 }

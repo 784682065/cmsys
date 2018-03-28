@@ -39,4 +39,16 @@ public interface InformDao {
     //查找所有信息
     List<Map<String,Object>> Allmes(@Param("offset") int offset, @Param("limit") int limit);
 
+
+    //查找具体某条信息
+    Map<String,Object> findMesById(Integer id);
+
+
+    //获得前五条活动
+    List<Map<String,Object>> get5Inform();
+
+    //获得前五条通知
+    List<Map<String,Object>> get5Notices();
+
+
 }

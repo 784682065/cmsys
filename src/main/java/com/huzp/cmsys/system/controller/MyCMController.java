@@ -80,6 +80,31 @@ public class MyCMController extends BaseController{
 
     }
 
+    @RequestMapping("/quitMycm")
+    @ResponseBody
+    public JSONObject quitMycm(){
+
+        JSONObject jsonObject = new JSONObject();
+
+        Integer username = Integer.parseInt(ShiroKit.getUser().getUsername());
+
+        String cmid = super.getPara("cmid");
+
+        //查询社长
+        Integer position = myCMDao.findCMPosition(Integer.parseInt(cmid));
+
+        //退出社团先看职位职位为社长的话不允许退出
+        if (null != position && position == 1)  {
+
+            jsonObject.put("status","退出失败,社长不允许退出");
+        }else {
+            myCMDao.quitMycm(Integer.parseInt(cmid),username);
+            jsonObject.put("status","成功");
+        }
+
+        return jsonObject;
+    }
+
 
     @RequestMapping("/updateMyCm")
     @ResponseBody

@@ -13,7 +13,9 @@
         <!--th:action="@{/editUserinfo(userId=${user.id})} 传参数-->
         <!--style="position:absolute;left:100px; top:120px;"-->
         <div style="position:absolute; right:50px; top:50px;">
-            <input  type="button" style=" width:100%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg active"  onclick="" value="查看活动">
+            <input  type="button" style=" width:100%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg active"  onclick="checkinform()" value="查看活动">
+            <input  type="button" style=" width:100%;padding:0;margin:0;float:right;" class="btn btn-warning btn-lg active"  onclick="quitCM()" value="退出社团">
+
         </div>
         <form autocomplete="off"  id="addCommunity">
             <div class="ibox-title" style="text-align: center">
@@ -28,7 +30,7 @@
                                     <label class="col-sm-3 control-label">社团名称</label>
                                     <div class="col-sm-9">
                                         <input class="form-control" id="cmname" name="cmname"  th:attr="value=${cm.cmname}"  disabled="disabled">
-                                        <input th:attr="value=${id}" hidden="hidden">
+                                        <input id="cmid" th:attr="value=${cm.id}" hidden="hidden">
                                     </div>
                                 </div>
                             </div>
@@ -67,6 +69,34 @@
             </div>
         </form>
     </div>
+    <script>
+        //查看社团活动
+        function checkinform() {
+
+            var cmid = $('#cmid').val();
+            $(location).attr('href', '/cminform?cmid='+cmid);
+        }
+
+        function quitCM() {
+
+            var cmid = $('#cmid').val();
+            $.ajax({
+                type : "POST",
+                url  : "/quitMycm",
+                data :{cmid : cmid} ,
+                success : function (data) {
+                    if (data.status == "成功"){
+                        Feng.success("退出成功");
+                        $(location).attr('href', '/mycm');
+                    }else {
+                        Feng.error(data.status);
+                        $(location).attr('href', '/mycm');
+                    }
+                }
+            });
+        }
+
+    </script>
 </div>
 </body>
 </html>

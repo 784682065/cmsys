@@ -94,5 +94,40 @@
         limit #{offset},#{limit}
     </select>
 
+    <select id="findMesById" parameterType="integer" resultType="map">
+        SELECT  informType, informTitle, informContent
+        FROM  inform
+        WHERE
+        id = #{id}
+    </select>
+
+
+    <select id="get5Inform" resultType="map">
+        SELECT  id,
+        (CASE informType  WHEN 1 THEN '公告' WHEN 2 THEN '活动' ELSE '其他' END )  as informType,
+        informTitle, informContent,createuser,
+        (SELECT DATE_FORMAT(createtime,'%Y年%m月%d日')) as createtime,
+        (CASE cmid  WHEN 0 THEN '管理员'  ELSE CONCAT((select  t.cmname FROM community t WHERE  t.id =cmid),'社团') END ) as cmid
+        FROM inform
+        WHERE
+        informType = 2
+        order by id  DESC
+        limit 0,5
+    </select>
+
+
+    <select id="get5Notices" resultType="map">
+        SELECT  id,
+        (CASE informType  WHEN 1 THEN '公告' WHEN 2 THEN '活动' ELSE '其他' END )  as informType,
+        informTitle, informContent,createuser,
+        (SELECT DATE_FORMAT(createtime,'%Y年%m月%d日')) as createtime,
+        (CASE cmid  WHEN 0 THEN '管理员'  ELSE CONCAT((select  t.cmname FROM community t WHERE  t.id =cmid),'社团') END ) as cmid
+        FROM inform
+        WHERE
+        informType = 1
+        order by id  DESC
+        limit 0,5
+    </select>
+
 
 </mapper>

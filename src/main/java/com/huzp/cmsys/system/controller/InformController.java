@@ -180,6 +180,24 @@ public class InformController extends BaseController {
         return "/system/community/allmes";
     }
 
+    /**
+      * @author hzp
+      * @param
+      * @description 查看具体某一条消息
+      * @return
+      */
+    @RequestMapping("/checkInform")
+    public String checkInform(@RequestParam("id") String id,Model model){
+
+        int  id1 = Integer.parseInt(id);
+
+        //根据id查找具体某条数据
+        Map<String, Object> infrom = informDao.findMesById(id1);
+
+        model.addAttribute("infrom",infrom);
+
+        return  "/system/community/checkinform";
+    }
 
 
 }

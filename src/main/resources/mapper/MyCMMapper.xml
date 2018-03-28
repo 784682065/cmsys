@@ -46,5 +46,22 @@
 
     </update>
 
+    <delete id="quitMycm" parameterType="int">
+        DELETE
+        FROM
+        communitymember
+        WHERE
+        username = #{username}
+        AND
+        communityid = #{cmid}
+    </delete>
+
+    <select id="findCMPosition" parameterType="int" resultType="integer">
+        SELECT createuser
+        FROM community
+        WHERE
+        id = #{cmid}
+    </select>
+
 
 </mapper>

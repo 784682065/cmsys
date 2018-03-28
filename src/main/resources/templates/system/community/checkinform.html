@@ -5,49 +5,46 @@
 <!-- layout文件路径-->
 <head>
     <meta charset="UTF-8">
-    <title>信息发布</title>
+    <title>活动/通知信息</title>
 </head>
 <body>
 <div layout:fragment="content">
 
     <div class="ibox-content">
         <form autocomplete="off">
-            <h4 class="my-title">信息发布</h4>
+            <h4 class="my-title">活动/通知信息</h4>
             <div class="my-form-box  form-horizontal" style="margin-top: 30px;">
                 <div class="row" style="margin-bottom: 10px">
                     <label class="control-label col-md-1" for="informType" id="informTypeText">发布类型</label>
                     <div class="col-md-8">
                         <select id="informType" style="width: 210px;height: 35px; font-size: 14px; padding:0 10px;" disabled="disabled">
-                            <option value="1" th:selected="${type == 1}">通知</option>
-                            <option value="2" th:selected="${type == 2}">活动</option>
+                            <option value="1" th:selected="${infrom.informType == 1}">通知</option>
+                            <option value="2" th:selected="${infrom.informType == 2}">活动</option>
                         </select>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom: 10px">
                     <label class="control-label col-md-1" for="informTitle" id="informTitleText">通知标题</label>
                     <div class=" col-md-10">
-                        <input type="text" id="informTitle" name="informTitle" class="form-control"/>
+                        <input type="text" id="informTitle" name="informTitle" class="form-control" th:attr="value=${infrom.informTitle}" disabled="disabled"/>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom: 10px">
                     <label class="control-label col-md-1" for="informContent" id="informContentText">通知内容</label>
                     <div class="col-md-10">
                         <textarea class="form-control" name="informContent" id="informContent" rows="8"
-                                  style="resize: none"></textarea>
+                                  style="resize: none" th:text="${infrom.informContent}" disabled="disabled"></textarea>
                     </div>
-                </div>
-                <div class="row" style="margin-bottom: 10px;margin-top: 100px;" align="center">
-                    <button type="submit" class="btn btn-primary" id="informPublish" onclick="notices.publish()">
-                        通知发布
-                    </button>
-                    <button class="btn btn-warning" id="informClean" onclick="notices.delete()">
-                        清空内容
-                    </button>
                 </div>
             </div>
         </form>
+        <div class="row" style="margin-bottom: 10px;margin-top: 100px;" align="center">
+            <button type="submit" class="btn btn-primary" id="informPublish"  onclick="inform.back()">
+                返回通知与活动主页
+            </button>
+        </div>
     </div>
-    <script src="/modular/system/community/notices.js"></script>
+    <script src="/modular/system/community/inform.js"></script>
 </div>
 </body>
 </html>
