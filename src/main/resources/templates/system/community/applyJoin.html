@@ -50,7 +50,7 @@
                 <td th:text="${Mes.cmname}">社团名字</td>
                 <td th:text="${Mes.cmdirection}">社团方向</td>
                 <td th:text="${Mes.total}">社团人数</td>
-                <td><a >查看</a></td>
+                <td><a th:href="@{'/checkMycmByvistor?cmid='+${Mes.id}+'&position=2'}">查看</a></td>
                 <td><a th:href="@{'/join?id='+${Mes.id}+'&cmname='+${Mes.cmname}}">申请</a></td>
             </a>
         </tr>

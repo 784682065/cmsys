@@ -80,6 +80,28 @@ public class MyCMController extends BaseController{
 
     }
 
+
+    @RequestMapping("/checkMycmByvistor")
+    public String checkMycmByvistor(Model model){
+
+        String cmid = super.getPara("cmid");
+        String position = super.getPara("position");
+        //根据cmid查询出社团信息
+        Map<String, Object> cm = myCMDao.findCM(Integer.parseInt(cmid));
+        model.addAttribute("cm",cm);
+
+        //社长的编辑页面
+        if( null != position && position.equals("2") ){
+            return "/system/community/checkMyCMByvistor";
+
+        }else {
+            return "/404";
+        }
+
+
+    }
+
+
     @RequestMapping("/quitMycm")
     @ResponseBody
     public JSONObject quitMycm(){
