@@ -7963,3 +7963,81 @@ body.skin-3 {
     background-color: #d9edf7;
     border-color: #bce8f1;
 }
+
+
+/*created 2018-3-31*/
+*{box-sizing: border-box;font-family: "microsoft yahei", "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif;list-style: none;outline: none!important;}
+html,body{height:100%;width: 100%;position: relative;background: #fff!important;}
+textarea{resize: none;}
+
+/*login.html*/
+.login-page{background: url("../img/login-in-bg.jpg") no-repeat!important;background-size: 100% 100%!important;}
+.login-page .login-box{position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: 500px;height:485px;margin: auto;}
+.login-page .login-box>.login-title{color: #444;font-size: 36px;letter-spacing: 14px;font-weight: bold;margin-bottom: 30px;}
+.login-page .login-box>form{border-radius: 8px;box-shadow: 0 0 60px rgba(0, 0, 0, .2);padding: 30px 40px;background: #fff;height: 300px;}
+.login-page .tips, .error-box{box-shadow: none;border-radius: 8px;}
+.login-page .login-btn{line-height:30px;font-size: 18px;border-radius: 2px;}
+.login-page .input-box{padding: 0;margin-bottom: 25px;}
+.login-page .input-box>input{line-height: 60px;width: 70%;letter-spacing: 1px;border: 0 none!important;}
+
+/*blackboard.html*/
+.blackboard{padding: 30px;}
+.blackboard .panel-body>ul{padding:0 20px;overflow: hidden;}
+.blackboard .panel-body>ul>li{line-height:36px;font-size: 16px;padding: 0;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+
+/*createCM.html*/
+.createCm{background: #fff;}
+.wrapper.wrapper-content>div>.btn.btn-primary{width: 100px!important;}
+.createCm .click-btn,.applyJoinCM .click-btn,.btn.btn-primary.block.full-width{width: 200px!important;left: 0!important;right: 0!important;margin: auto!important;position: absolute!important;}
+.wrapper-content{padding: 0;}
+input,textarea,select{border: 1px solid #999!important;border-radius: 4px;}
+th,td{border-color: #999!important;text-align: center!important;}
+/*applyJoin.html*/
+.applyJoin-page{background: #fff;}
+.table-box{margin-bottom: 30px;padding: 0 20px;}
+.table-bordered{margin-bottom: 0;border-color: #999;}
+.table-bordered th,.applyJoin-page .table-bordered td{border-color: #999;text-align: center;}
+.pagination-box{padding: 0 20px;}
+.pagination-box .pagination{margin: 0;line-height: 50px;}
+.pagination-box .pagination>li>.btn-group{margin-top: -25px;margin-left: 20px;}
+
+/*magMy-page*/
+.magMy-page{background: #fff;}
+
+/*upanddownload-page*/
+.upanddownload-page{background: #fff;}
+.download{width: 100%!important;border-color: #999;}
+.download th,.upanddownload-page .download td{line-height: 40px;border-color: #999;text-align: center;}
+.click-btn{display: inline-block;padding: 0 20px;margin: 0 10px;line-height: 30px;background: #116abf;border-radius: 4px;color: #eee;}
+.click-btn:hover{background: #0054a5;color: #fff;}
+.uploading-box>input{border: 0 none!important;margin-bottom: 20px;}
+.uploading-box>.click-btn{margin: 0;border: 0 none!important;}
+
+
+
+/*mail-page*//*outBox*/
+.mail-page,.outBox{background: #fff;padding: 10px 30px;}
+.mail-page h1,.outBox h1{margin-bottom: 20px;}
+.outBox .table-box{padding: 0;}
+.outBox .table-bordered{width: 100%;line-height: 45px;}
+.mail-page table,.outBox .table-box{width: 100%;margin-top: 20px;}
+.mail-page table td,.mail-page table th{line-height: 30px;}
+
+/*editMail*/
+.editMail{background: #fff;padding:10px 30px;}
+.editMail form{line-height: 36px;}
+.editMail form p{margin: 10px 0;}
+.editMail form p>label{width: 75px;letter-spacing: 5px;font-size: 15px;}
+.editMail form p>input,.editMail form p>textarea{padding: 0 20px;height: 34px;width: 100%;}
+.editMail .click-btn{margin: 30px 0 0 0;width: 200px;}
+
+/*checkMyCM*//*editMyCM*/
+.checkMyCM .click-btn,.editMyCM .click-btn{display: inline-block;padding: 0 20px;line-height: 30px;margin: 0 10px;font-size: 14px;border: 0 none!important;box-shadow: none;outline: none;}
+.checkMyCM .ibox-content{border: 0 none;padding: 0;margin-top: 30px;}
+.editMyCM .ibox-content{padding: 0;margin-top: 10px;}
+
+/*checkOutBox*/
+.checkOutBox{line-height: 45px;font-size: 18px;padding: 10px 30px;color:#777!important;}
+.checkOutBox .mailTitle,.checkOutBox .mailFrom{border: 0 none!important;margin-left: 20px;color: #333!important;}
+.checkOutBox .click-btn{border: 0 none;margin: 30px 0 0 0;font-size: 14px;}
+.checkOutBox textarea{width: 100%;padding: 0 20px;line-height: 32px;font-size: 16px;color: #333;height: 200px;}

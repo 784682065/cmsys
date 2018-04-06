@@ -7,39 +7,40 @@
     <meta charset="UTF-8">
     <title>我的社团</title>
 </head>
-<body>
+<body class="myCM">
 <div layout:fragment="content">
     <div class="ibox-title" style="text-align: center">
         <h2>我的社团</h2>
     </div>
     <div class="ibox-content"></div>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>社团名字</th>
-            <th>我的职位</th>
-            <th>查看</th>
-            <!--<th>退出</th>-->
-            <!--<th>群发邮件</th>-->
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="Mes,iterStat: ${page.getDatas()}">
-            <a th:if="${null != iterStat.size}">
-                <td th:text="${iterStat.count}">id</td>
-                <td th:text="${Mes.cmname}">社团名字</td>
-                <td th:text="${Mes.myposition}">我的职位</td>
-                <td><a th:href="@{'/checkMycm?cmid='+${Mes.communityid}+'&position='+${Mes.communityposition}}">查看</a></td>
-                <!--<td><a onclick="quitCM()">退出</a></td>-->
-                <!--<td><a >群发邮件</a></td>-->
-            </a>
-        </tr>
-        </tbody>
-    </table>
-
+    <div class="table-box">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>社团名字</th>
+                <th>我的职位</th>
+                <th>查看</th>
+                <!--<th>退出</th>-->
+                <!--<th>群发邮件</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="Mes,iterStat: ${page.getDatas()}">
+                <a th:if="${null != iterStat.size}">
+                    <td th:text="${iterStat.count}">id</td>
+                    <td th:text="${Mes.cmname}">社团名字</td>
+                    <td th:text="${Mes.myposition}">我的职位</td>
+                    <td><a th:href="@{'/checkMycm?cmid='+${Mes.communityid}+'&position='+${Mes.communityposition}}">查看</a></td>
+                    <!--<td><a onclick="quitCM()">退出</a></td>-->
+                    <!--<td><a >群发邮件</a></td>-->
+                </a>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <!--分页部分start -->
-    <nav aria-label="Page navigation">
+    <nav aria-label="Page navigation" class="pagination-box">
         <ul class="pagination">
             <li>
                 <div>

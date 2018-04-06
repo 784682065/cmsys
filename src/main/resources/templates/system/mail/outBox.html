@@ -24,14 +24,14 @@
 
 
 </head>
-<body>
+<body class="outBox">
 <div layout:fragment="content">
     <h1> 发件箱</h1>
     <div>
         时间:<span id="spanTime" style="color: blue;">00:00:00</span>
     </div>
-    <div>
-        <table border="1">
+    <div class="table-box">
+        <table border="1" class="table-bordered">
             <tr>
                 <th>序号</th>
                 <th>邮件标题</th>
@@ -44,7 +44,7 @@
                 <td th:text="${myMail.title}">邮件标题</td>
                 <td th:text="${myMail.senddata}">创建时间</td>
                 <td th:text="${myMail.sendee}">接收人</td>
-                <td><a th:href="@{'/checkoutbox?id='+${myMail.id}}">查看</a></td>
+                <td><a th:href="@{'/checkoutbox?id='+${myMail.id}}" class="click-btn">查看</a></td>
             </tr>
         </table>
     </div>

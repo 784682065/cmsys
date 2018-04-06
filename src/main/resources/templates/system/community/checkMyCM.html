@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <title>查看社团</title>
 </head>
-<body>
+<body class="checkMyCM">
 <div layout:fragment="content">
     <div class="wrapper wrapper-content animated fadeInRight">
         <!--th:action="@{/editUserinfo(userId=${user.id})} 传参数-->
         <!--style="position:absolute;left:100px; top:120px;"-->
         <div style="position:absolute; right:50px; top:50px;">
-            <input  type="button" style=" width:100%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg active"  onclick="checkinform()" value="查看活动">
-            <input  type="button" style=" width:100%;padding:0;margin:0;float:right;" class="btn btn-warning btn-lg active"  onclick="quitCM()" value="退出社团">
+            <input  type="button" class="btn btn-primary btn-lg active click-btn"  onclick="checkinform()" value="查看活动">
+            <input  type="button" class="btn btn-warning btn-lg active click-btn"  onclick="quitCM()" value="退出社团">
 
         </div>
         <form autocomplete="off"  id="addCommunity">

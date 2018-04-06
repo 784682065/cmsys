@@ -37,6 +37,7 @@ public class InformController extends BaseController {
     @RequestMapping("/inform")
     public String inform(Model model, @RequestParam("id") String id) {
 
+
         model.addAttribute("id",id);
         //类型2 为活动
         model.addAttribute("type",2);

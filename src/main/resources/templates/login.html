@@ -3,16 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>社团管理系统 - 登录</title>
-
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="/css/animate.css" rel="stylesheet">
     <link href="/css/style.css?v=4.1.0" rel="stylesheet">
-
-
     <script src="/js/jquery.min.js?v=2.1.4"></script>
     <script src="/js/bootstrap.min.js?v=3.3.6"></script>
     <style>
@@ -126,13 +122,13 @@
     </style>
 </head>
 
-<body class="gray-bg animated fadeInDown">
+<body class="gray-bg animated fadeInDown login-page">
     <div class="title ">
         <!--<img src="/img/login-titbg.png" alt="">-->
     </div>
     <div class="login-box">
+        <div align="center" class="login-title">社团管理系统</div>
         <form  role="form" action="/login" method="post" autocomplete="off">
-            <div align="center" style="font-size: 40px;margin-bottom: 30px;color: #333;">登&nbsp;&nbsp;&nbsp;&nbsp;录</div>
             <div class="input-box">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 <input type="text" name="username"  placeholder="用户名" required="">
@@ -144,19 +140,14 @@
                 <i class=" pass-word fa fa-info" aria-hidden="true"></i>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary block full-width">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            <button type="submit" class="btn btn-primary block full-width login-btn">登录</button>
             <p style="color:#d60e10; margin-top: 10px"></p>
         </form>
-        <div class="error-box" th:text="${tips}"></div>
         <div class="tips"></div>
-
+        <div class="error-box" th:text="${tips}"></div>
     </div>
-
-
-
     <script>
         $(function () {
-
             $(".input-box").find("i").mouseover(function(){
                 if($(this).hasClass("user-name")){
                     $(".tips").html("用户名通常是你的学号。").fadeIn();

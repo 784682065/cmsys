@@ -1,0 +1,42 @@
+*{box-sizing: border-box;font-family: "microsoft yahei", "微软雅黑", "Helvetica Neue", Helvetica, Arial, sans-serif;list-style: none;}
+html,body{height:100%;width: 100%;position: relative;}
+textarea{resize: none;}
+
+/*login.html*/
+.login-page{background: url("../img/login-in-bg.jpg") no-repeat;background-size: 100% 100%;}
+.login-page .login-box{position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: 500px;height:485px;margin: auto;}
+.login-page .login-box>.login-title{color: #444;font-size: 36px;letter-spacing: 14px;font-weight: bold;margin-bottom: 30px;}
+.login-page .login-box>form{border-radius: 8px;box-shadow: 0 0 60px rgba(0, 0, 0, .2);padding: 30px 40px;background: #fff;}
+.login-page .tips, .error-box{box-shadow: none;border-radius: 8px;}
+.login-page .login-btn{line-height:30px;font-size: 18px;border-radius: 2px;}
+.login-page .input-box{padding: 0;margin-bottom: 25px;}
+.login-page .input-box>input{line-height: 60px;width: 70%;letter-spacing: 1px;}
+
+/*blackboard.html*/
+.blackboard{padding: 30px;}
+.blackboard .panel-body>ul{padding:0 20px;overflow: hidden;}
+.blackboard .panel-body>ul>li{line-height:36px;font-size: 16px;padding: 0;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+
+/*createCM.html*/
+input,textarea,select{border: 1px solid #999;border-radius: 4px;}
+th,td{border-color: #999;text-align: center;}
+/*applyJoin.html*/
+.applyJoin-page{background: #fff;}
+.applyJoin-page .table-box{margin-bottom: 30px;padding: 0 20px;}
+.applyJoin-page .table-bordered{margin-bottom: 0;border-color: #999;}
+.applyJoin-page .table-bordered th,.applyJoin-page .table-bordered td{border-color: #999;text-align: center;}
+.applyJoin-page .pagination-box{padding: 0 20px;}
+.applyJoin-page .pagination-box .pagination{margin: 0;line-height: 50px;}
+.applyJoin-page .pagination-box .pagination>li>.btn-group{margin-top: -25px;margin-left: 20px;}
+
+/*magMy-page*/
+.magMy-page{background: #fff;}
+
+/*upanddownload-page*/
+.upanddownload-page{background: #fff;}
+.download{width: 100%!important;}
+.download th,.upanddownload-page .download td{line-height: 40px;}
+
+
+
+

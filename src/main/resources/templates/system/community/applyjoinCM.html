@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <title>社团申请</title>
 </head>
-<body>
+<body class="applyJoinCM">
 <div layout:fragment="content" >
     <div class="wrapper wrapper-content animated fadeInRight">
         <form id="applyForm" autocomplete="off"   th:object="${user}">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            <input  type="button" class="btn btn-primary block full-width" onclick="Com.applyjoinCommuntiy()" value="申&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请">
+            <input  type="button" class="btn btn-primary block click-btn" onclick="Com.applyjoinCommuntiy()" value="申&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请">
         </form>
         <script src="/modular/system/community/community.js"></script>
 

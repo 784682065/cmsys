@@ -59,11 +59,11 @@
     </script>
 </head>
 
-<body>
+<body class="upanddownload-page">
 <div layout:fragment="content">
 
     <h1> 文件下载</h1>
-    <table border="1">
+    <table border="1" class="download">
         <tr>
             <th>序号</th>
             <th>文件名字</th>
@@ -76,8 +76,8 @@
             <td th:text="${myFile.filename}">文件名字</td>
             <td th:text="${myFile.filecap}">文件大小</td>
             <td th:text="${myFile.createtime}">文件创建时间</td>
-            <td><a th:href="@{'/download?filename='+${myFile.filename}}">下载,</a><a
-                    th:href="@{'/delete?filename='+${myFile.filename}}">删除</a></td>
+            <td><a th:href="@{'/download?filename='+${myFile.filename}}" class="click-btn">下载</a><a
+                    th:href="@{'/delete?filename='+${myFile.filename}}" class="click-btn">删除</a></td>
         </tr>
     </table>
 
@@ -85,9 +85,9 @@
     <br><br>
 
     <h1> 文件上传</h1>
-    <form id="myForm" enctype="multipart/form-data">
+    <form id="myForm" enctype="multipart/form-data" class="uploading-box">
         <input type="file" name="file"/>
-        <button type="button" id="fileUp" class="btn btn-primary block full-width">
+        <button type="button" id="fileUp" class="block click-btn">
             附件上传
         </button>
     </form>
