@@ -8,12 +8,16 @@
 </head>
 <body class="checkMail">
 <div layout:fragment="content">
-    邮件标题:<input type="text" th:attr="value=${myMail.title}"  readonly/> <br>
-    邮件来自 <span style="color: red;"  th:text="${byUsername}"></span><br>
+    <p>邮件标题:</p>
+    <input type="text" th:attr="value=${myMail.title}"  readonly/>
+    <p>邮件来自:<span style="color: red;"  th:text="${byUsername}"></span></p>
 
-    邮件内容:<br><textarea type="text" th:text="${myMail.contents}" readonly></textarea><br>
-    <a href="/editmail" class="click-btn">回复</a>
-    <a href="/checkmail" class="click-btn">回到邮件主页</a>
+    <p>邮件内容:</p>
+    <textarea type="text" th:text="${myMail.contents}" readonly></textarea>
+    <div>
+        <a href="/editmail" class="click-btn">回复</a>
+        <a href="/checkmail" class="click-btn">回到邮件主页</a>
+    </div>
 </div>
 </body>
 </html>

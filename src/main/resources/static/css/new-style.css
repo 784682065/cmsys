@@ -3,7 +3,6 @@ html,body{height:100%;width: 100%;position: relative;}
 textarea{resize: none;}
 
 /*login.html*/
-.login-page{background: url("../img/login-in-bg.jpg") no-repeat;background-size: 100% 100%;}
 .login-page .login-box{position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: 500px;height:485px;margin: auto;}
 .login-page .login-box>.login-title{color: #444;font-size: 36px;letter-spacing: 14px;font-weight: bold;margin-bottom: 30px;}
 .login-page .login-box>form{border-radius: 8px;box-shadow: 0 0 60px rgba(0, 0, 0, .2);padding: 30px 40px;background: #fff;}

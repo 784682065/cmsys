@@ -7971,10 +7971,10 @@ html,body{height:100%;width: 100%;position: relative;background: #fff!important;
 textarea{resize: none;}
 
 /*login.html*/
-.login-page{background: url("../img/login-in-bg.jpg") no-repeat!important;background-size: 100% 100%!important;}
+.login-page{background: url("../img/bg1.jpg") no-repeat!important;background-size: 100% 100%!important;}
 .login-page .login-box{position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: 500px;height:485px;margin: auto;}
 .login-page .login-box>.login-title{color: #444;font-size: 36px;letter-spacing: 14px;font-weight: bold;margin-bottom: 30px;}
-.login-page .login-box>form{border-radius: 8px;box-shadow: 0 0 60px rgba(0, 0, 0, .2);padding: 30px 40px;background: #fff;height: 300px;}
+/*.login-page .login-box>form{border-radius: 8px;box-shadow: 0 0 60px rgba(0, 0, 0, .2);padding: 30px 40px;background: #fff;height: 300px;}*/
 .login-page .tips, .error-box{box-shadow: none;border-radius: 8px;}
 .login-page .login-btn{line-height:30px;font-size: 18px;border-radius: 2px;}
 .login-page .input-box{padding: 0;margin-bottom: 25px;}
@@ -8021,7 +8021,7 @@ th,td{border-color: #999!important;text-align: center!important;}
 .outBox .table-box{padding: 0;}
 .outBox .table-bordered{width: 100%;line-height: 45px;}
 .mail-page table,.outBox .table-box{width: 100%;margin-top: 20px;}
-.mail-page table td,.mail-page table th{line-height: 30px;}
+.mail-page table td,.mail-page table th{line-height: 45px;}
 
 /*editMail*/
 .editMail{background: #fff;padding:10px 30px;}
@@ -8041,3 +8041,12 @@ th,td{border-color: #999!important;text-align: center!important;}
 .checkOutBox .mailTitle,.checkOutBox .mailFrom{border: 0 none!important;margin-left: 20px;color: #333!important;}
 .checkOutBox .click-btn{border: 0 none;margin: 30px 0 0 0;font-size: 14px;}
 .checkOutBox textarea{width: 100%;padding: 0 20px;line-height: 32px;font-size: 16px;color: #333;height: 200px;}
+
+/*checkMail.html*/
+.checkMail{padding: 10px 30px;}
+.checkMail p{width: 150px;letter-spacing: 5px;font-size: 15px;font-weight: 700;line-height: 36px;margin-bottom: 5px;}
+.checkMail input{padding: 0 20px;height: 34px;width: 100%;}
+.checkMail textarea{padding: 0 20px;width: 100%;height: 100px;}
+.checkMail div{margin-top: 20px;}
+.checkMail div>a{}
+
