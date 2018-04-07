@@ -50,11 +50,11 @@
                         success : function (data) {
                             console.log(data.status);
                             if(data.status == "1"){
-                                alert("发送成功");
+                                Feng.success("发送成功");
                                 //成功则打开发件箱
                                 $(location).attr('href', '/outbox');
                             }else {
-                                alert("发送失败,没有此账户");
+                                Feng.error("发送失败,没有此账户");
                                 $(location).attr('href', '/editmail');
                             }
                         }

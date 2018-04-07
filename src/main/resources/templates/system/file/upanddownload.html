@@ -44,8 +44,7 @@
 
                     success: function (data) {
 
-                        var res = confirm(data.state);
-
+                        Feng.success("上传成功");
                         $(location).attr('href', '/fileupanddownload');
                     },
 
@@ -71,13 +70,15 @@
             <th>创建时间</th>
             <th>操作</th>
         </tr>
-        <tr th:each="myFile : ${myFileList}">
-            <td th:text="${myFile.id}">id</td>
-            <td th:text="${myFile.filename}">文件名字</td>
-            <td th:text="${myFile.filecap}">文件大小</td>
-            <td th:text="${myFile.createtime}">文件创建时间</td>
-            <td><a th:href="@{'/download?filename='+${myFile.filename}}" class="click-btn">下载</a><a
+        <tr th:each="myFile,iterStat : ${myFileList}">
+            <a th:if="${null != iterStat.size}">
+                <td th:text="${iterStat.count}">id</td>
+                <td th:text="${myFile.filename}">文件名字</td>
+                <td th:text="${myFile.filecap}">文件大小</td>
+                <td th:text="${myFile.createtime}">文件创建时间</td>
+                <td><a th:href="@{'/download?filename='+${myFile.filename}}" class="click-btn">下载</a><a
                     th:href="@{'/delete?filename='+${myFile.filename}}" class="click-btn">删除</a></td>
+            </a>
         </tr>
     </table>
 

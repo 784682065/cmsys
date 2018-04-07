@@ -42,14 +42,21 @@
                 <th>操作</th>
                 <th>是否已读</th>
             </tr>
-            <tr th:each="myMail : ${myMailList}">
-                <td th:text="${myMail.id}">id</td>
-                <td th:text="${myMail.title}">邮件标题</td>
-                <td th:text="${myMail.senddata}">创建时间</td>
-                <td th:text="${myMail.sendee}">接收人</td>
-                <td><a th:href="@{'/checkMail?id='+${myMail.id}}">查看,</a><a
+            <tr th:each="myMail,iterStat : ${myMailList}">
+                <a th:if="${null != iterStat.size}">
+                    <td th:text="${iterStat.count}">id</td>
+                    <td th:text="${myMail.title}">邮件标题</td>
+                    <td th:text="${myMail.senddata}">创建时间</td>
+                    <td th:text="${myMail.sendee}">接收人</td>
+                    <td><a th:href="@{'/checkMail?id='+${myMail.id}}">查看,</a><a
                         th:href="@{'/deleteMail?id='+${myMail.id}}">删除</a></td>
-                <td th:text="${myMail.status}">是否已读</td>
+                    <div th:if="${myMail.status} == 1">
+                        <td >未读</td>
+                    </div>
+                    <div th:if="${myMail.status} == 0">
+                        <td >已读</td>
+                    </div>
+                </a>
             </tr>
         </table>
     </div>

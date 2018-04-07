@@ -12,7 +12,7 @@
     邮件来自 <span style="color: red;"  th:text="${byUsername}" class="mailFrom"></span><br>
 
     邮件内容:<br><textarea type="text" th:text="${myMail.contents}" readonly></textarea><br>
-    <button class="click-btn">回到邮件主页</button>
+    <a href="/checkmail" class="click-btn">回到邮件主页</a>
 </div>
 </body>
 </html>

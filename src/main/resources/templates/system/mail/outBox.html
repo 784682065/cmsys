@@ -39,12 +39,14 @@
                 <th>接收人</th>
                 <th>操作</th>
             </tr>
-            <tr th:each="myMail : ${myMailList}">
-                <td th:text="${myMail.id}">id</td>
-                <td th:text="${myMail.title}">邮件标题</td>
-                <td th:text="${myMail.senddata}">创建时间</td>
-                <td th:text="${myMail.sendee}">接收人</td>
-                <td><a th:href="@{'/checkoutbox?id='+${myMail.id}}" class="click-btn">查看</a></td>
+            <tr th:each="myMail,iterStat : ${myMailList}">
+                <a th:if="${null != iterStat.size}">
+                    <td th:text="${iterStat.count}">id</td>
+                    <td th:text="${myMail.title}">邮件标题</td>
+                    <td th:text="${myMail.senddata}">创建时间</td>
+                    <td th:text="${myMail.sendee}">接收人</td>
+                    <td><a th:href="@{'/checkoutbox?id='+${myMail.id}}" class="click-btn">查看</a></td>
+                </a>
             </tr>
         </table>
     </div>

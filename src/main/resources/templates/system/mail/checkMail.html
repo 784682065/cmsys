@@ -12,8 +12,8 @@
     邮件来自 <span style="color: red;"  th:text="${byUsername}"></span><br>
 
     邮件内容:<br><textarea type="text" th:text="${myMail.contents}" readonly></textarea><br>
-    <button>回复</button>
-    <button>回到邮件主页</button>
+    <a href="/editmail" class="click-btn">回复</a>
+    <a href="/checkmail" class="click-btn">回到邮件主页</a>
 </div>
 </body>
 </html>

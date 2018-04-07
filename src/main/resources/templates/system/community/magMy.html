@@ -33,7 +33,12 @@
                     <td th:text="${Mes.type}">申请类型</td>
                     <td th:text="${Mes.applicant}">申请人</td>
                     <td><a th:href="@{'/checkMyApply?id='+${Mes.id}}">查看</a></td>
-                    <td th:text="${Mes.status}">是否已读</td>
+                    <div th:if="${Mes.status} == 1">
+                        <td >未读</td>
+                    </div>
+                    <div th:if="${Mes.status} == 0">
+                        <td >已读</td>
+                    </div>
                     <td th:text="${Mes.createtime}">创建时间</td>
                 </a>
             </tr>
