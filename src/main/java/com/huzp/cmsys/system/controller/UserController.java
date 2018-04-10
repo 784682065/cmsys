@@ -100,7 +100,7 @@ public class UserController extends BaseController{
     }
 
     @RequestMapping("/editUserinfo")
-    public String editUser(@RequestParam String email, @RequestParam String birthday,@RequestParam Integer phone){
+    public String editUser(@RequestParam String email, @RequestParam String birthday,@RequestParam String phone){
         Integer userId = ShiroKit.getUser().getId();
         User user = userDao.findById(userId);
         user.setEmail(email);
