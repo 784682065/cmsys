@@ -93,24 +93,24 @@
                 </div>
             </li>
             <li>
-                <a id="condition" th:href="@{/applyjoin/(currentPage=1,pageSize=${page.pageSize},condition=${condition} )}" aria-label="Previous">
+                <a  th:href="@{/fileupanddownload/(currentPage=1,pageSize=${page.pageSize} )}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;首页</span>
                 </a>
             </li>
             <li>
-                <a th:href="@{/applyjoin/(currentPage=${page.currentPage-1},pageSize=${page.pageSize},condition=${condition} )}" aria-label="Previous">
+                <a th:href="@{/fileupanddownload/(currentPage=${page.currentPage-1},pageSize=${page.pageSize} )}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;上一页</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/applyjoin/(currentPage=${page.currentPage+1},pageSize=${page.pageSize},condition=${condition} )}" aria-label="Next">
+                <a th:href="@{/fileupanddownload/(currentPage=${page.currentPage+1},pageSize=${page.pageSize} )}" aria-label="Next">
                     <span aria-hidden="true">下一页&raquo;</span>
                 </a>
             </li>
 
             <li>
-                <a th:href="@{/applyjoin/(currentPage=${page.totalPageCount},pageSize=${page.pageSize},condition=${condition} )}" aria-label="Next">
+                <a th:href="@{/fileupanddownload/(currentPage=${page.totalPageCount},pageSize=${page.pageSize})}" aria-label="Next">
                     <span aria-hidden="true">尾页&raquo;</span>
                 </a>
             </li>
@@ -122,9 +122,9 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a th:href="@{/applyjoin/(currentPage=${page.currentPage},pageSize=5 )}">5</a></li>
-                        <li><a th:href="@{/applyjoin/(currentPage=${page.currentPage},pageSize=10 )}">10</a></li>
-                        <li><a th:href="@{/applyjoin/(currentPage=${page.currentPage},pageSize=20 )}">20</a></li>
+                        <li><a th:href="@{/fileupanddownload/(currentPage=${page.currentPage},pageSize=5 )}">5</a></li>
+                        <li><a th:href="@{/fileupanddownload/(currentPage=${page.currentPage},pageSize=10 )}">10</a></li>
+                        <li><a th:href="@{/fileupanddownload/(currentPage=${page.currentPage},pageSize=20 )}">20</a></li>
                     </ul>
                 </div>
                 <!-- 调整pageSize结束 -->

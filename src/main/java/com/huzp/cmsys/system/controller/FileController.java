@@ -40,7 +40,7 @@ public class FileController extends BaseController{
      * @return
      */
     @RequestMapping(value = {"/fileupanddownload","/"})
-    public String filedownload(Model model,Page<MyFile>page){
+    public String filedownload(Model model,Page<MyFile> page){
 
         Integer username =Integer.parseInt(ShiroKit.getUser().getUsername());
         //根据usernmae查出他总共的文件数量
@@ -53,8 +53,6 @@ public class FileController extends BaseController{
         List<MyFile> myFileList = myFileDao.getMyFile(username,offset,limit);
 
         page.setDatas(myFileList);
-
-        model.addAttribute("myFileList",myFileList);
 
         model.addAttribute("page",page);
 

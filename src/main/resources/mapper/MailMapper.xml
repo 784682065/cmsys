@@ -2,10 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huzp.cmsys.system.dao.MailDao">
 
+    <select id="findTotalMail" parameterType="integer" resultType="integer">
+        SELECT COUNT(*)
+        FROM  mail m
+        WHERE m.sendee=#{sendee}
+    </select>
+
+    <select id="findTotalMail1" parameterType="integer" resultType="integer">
+        SELECT COUNT(*)
+        FROM  mail m
+        WHERE m.createuser = #{createuser}
+    </select>
+
+
     <select id="checkMail" parameterType="integer" resultType="com.huzp.cmsys.system.entity.Mail">
          SELECT m.id,m.title,m.contents,m.senddata,m.status,m.sendee,m.createuser
          FROM  mail m
-         WHERE m.sendee=#{sendee};
+         WHERE m.sendee=#{sendee}
+         limit #{offset},#{limit}
     </select>
 
     <select id="checkMailById" parameterType="integer" resultType="com.huzp.cmsys.system.entity.Mail">
@@ -43,7 +57,13 @@
     <select id="checkMailByCreateuser" resultType="com.huzp.cmsys.system.entity.Mail">
          SELECT m.id,m.title,m.contents,m.senddata,m.status,m.sendee,m.createuser
          FROM  mail m
-         WHERE m.createuser=#{createuser};
+         WHERE m.createuser=#{createuser}
+         limit #{offset},#{limit}
     </select>
 
+    <select id="checkMail1" parameterType="integer" resultType="com.huzp.cmsys.system.entity.Mail">
+        SELECT m.id,m.title,m.contents,m.senddata,m.status,m.sendee,m.createuser
+        FROM  mail m
+        WHERE m.sendee=#{sendee}
+    </select>
 </mapper>
