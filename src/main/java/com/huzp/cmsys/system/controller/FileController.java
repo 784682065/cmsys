@@ -50,7 +50,7 @@ public class FileController extends BaseController{
         int offset = (page.getCurrentPage() - 1) * page.getPageSize();
         int limit = page.getPageSize();
 
-        List<MyFile> myFileList = myFileDao.getMyFile(username);
+        List<MyFile> myFileList = myFileDao.getMyFile(username,offset,limit);
 
         page.setDatas(myFileList);
 

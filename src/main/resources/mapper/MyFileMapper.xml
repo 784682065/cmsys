@@ -24,6 +24,7 @@
         SELECT  f.filename,f.username,f.filecap,f.filepath,f.createtime,f.id
         FROM  file f
         WHERE f.username = #{username}
+        limit #{offset},#{limit}
     </select>
 
     <delete id="deleteFile">
