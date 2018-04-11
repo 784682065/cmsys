@@ -6,6 +6,7 @@ import com.huzp.cmsys.shiro.ShiroKit;
 import com.huzp.cmsys.support.HttpKit;
 import com.huzp.cmsys.system.dao.MyFileDao;
 import com.huzp.cmsys.system.entity.MyFile;
+import com.huzp.cmsys.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -37,14 +39,25 @@ public class FileController extends BaseController{
      * 打开upAnddownload页面
      * @return
      */
-    @RequestMapping("/fileupanddownload")
-    public String filedownload(Model model){
+    @RequestMapping(value = {"/fileupanddownload","/"})
+    public String filedownload(Model model,Page<MyFile>page){
+
         Integer username =Integer.parseInt(ShiroKit.getUser().getUsername());
-        System.out.println(username);
+        //根据usernmae查出他总共的文件数量
+        Integer total = myFileDao.findTotalFile(username);
+        page.setTotalCount(total);
+
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
 
         List<MyFile> myFileList = myFileDao.getMyFile(username);
 
+        page.setDatas(myFileList);
+
         model.addAttribute("myFileList",myFileList);
+
+        model.addAttribute("page",page);
+
 
         return  "/system/file/upanddownload";
     }

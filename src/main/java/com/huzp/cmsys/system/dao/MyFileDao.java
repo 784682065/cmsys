@@ -22,5 +22,8 @@ public interface MyFileDao {
 
      void deleteFile(String fileName);
 
+     //根据用户名获得他的文件列表
+     Integer findTotalFile(Integer username);
+
 
 }

@@ -31,5 +31,12 @@
         WHERE  filename=#{filename}
     </delete>
 
+    <select id="findTotalFile" resultType="integer" parameterType="integer">
+        select count(*)
+        FROM file
+        WHERE
+        username=#{username}
+    </select>
+
 
 </mapper>
