@@ -6,6 +6,8 @@ import com.huzp.cmsys.shiro.ShiroKit;
 import com.huzp.cmsys.system.dao.MailDao;
 import com.huzp.cmsys.system.dao.UserDao;
 import com.huzp.cmsys.system.entity.Mail;
+import com.huzp.cmsys.system.entity.MyFile;
+import com.huzp.cmsys.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,15 +39,22 @@ public class MailController extends BaseController{
      * @return
      */
     @RequestMapping("/checkmail")
-    public String checkmail(Model model){
+    public String checkmail(Model model,Page<Mail> page){
 
         Integer username =Integer.parseInt(ShiroKit.getUser().getUsername());
-        System.out.println(username);
 
-        List<Mail> myMailList = mailDao.checkMail(username);
-        System.out.println(myMailList.toString());
+        //根据usernmae查出他总共的文件数量
+        Integer total = mailDao.findTotalMail(username);
+        page.setTotalCount(total);
 
-        model.addAttribute("myMailList",myMailList);
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
+
+        List<Mail> myMailList = mailDao.checkMail(username,offset,limit);
+
+        page.setDatas(myMailList);
+
+        model.addAttribute("page",page);
 
         return "/system/mail/mail";
     }
@@ -87,8 +96,8 @@ public class MailController extends BaseController{
         JSONObject jsonObject =new JSONObject();
         Integer username =Integer.parseInt(ShiroKit.getUser().getUsername());
 
-        //根据用户名查找邮件
-        List<Mail> mailList = mailDao.checkMail(username);
+        //根据用户名查找所有邮件
+        List<Mail> mailList = mailDao.checkMail1(username);
         //判断是否有邮件
         if(null != mailList){
             int flag = 0;
@@ -177,16 +186,24 @@ public class MailController extends BaseController{
      * 查看发件箱
      * @return
      */
-    @RequestMapping("outbox")
-    public  String outbox(Model model){
+    @RequestMapping("/outbox")
+    public  String outbox(Model model,Page<Mail> page){
 
         Integer username =Integer.parseInt(ShiroKit.getUser().getUsername());
-        System.out.println(username);
 
-        List<Mail> myMailList = mailDao.checkMailByCreateuser(username);
-        System.out.println(myMailList.toString());
+        //根据usernmae查出他总共的发出的数量
+        Integer total = mailDao.findTotalMail1(username);
+        page.setTotalCount(total);
 
-        model.addAttribute("myMailList",myMailList);
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        int limit = page.getPageSize();
+
+        List<Mail> myMailList = mailDao.checkMailByCreateuser(username,offset,limit);
+
+        page.setDatas(myMailList);
+
+        model.addAttribute("page",page);
+
         return "/system/mail/outBox";
     }
 

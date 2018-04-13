@@ -70,7 +70,7 @@
             <th>创建时间</th>
             <th>操作</th>
         </tr>
-        <tr th:each="myFile,iterStat : ${myFileList}">
+        <tr th:each="myFile,iterStat : ${page.getDatas()}">
             <a th:if="${null != iterStat.size}">
                 <td th:text="${iterStat.count}">id</td>
                 <td th:text="${myFile.filename}">文件名字</td>
@@ -82,6 +82,56 @@
         </tr>
     </table>
 
+    <!--分页部分start -->
+    <nav aria-label="Page navigation" class="pagination-box">
+        <ul class="pagination">
+            <li>
+                <div>
+                    总条数：<span th:text="${page.getTotalCount()}"></span>&nbsp;&nbsp;
+                    总页数：<span th:text="${page.getTotalPageCount()}"></span>&nbsp;&nbsp;
+                    当前页码：<span th:text="${page.getCurrentPage()}"></span>
+                </div>
+            </li>
+            <li>
+                <a  th:href="@{/fileupanddownload/(currentPage=1,pageSize=${page.pageSize} )}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;首页</span>
+                </a>
+            </li>
+            <li>
+                <a th:href="@{/fileupanddownload/(currentPage=${page.currentPage-1},pageSize=${page.pageSize} )}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;上一页</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/fileupanddownload/(currentPage=${page.currentPage+1},pageSize=${page.pageSize} )}" aria-label="Next">
+                    <span aria-hidden="true">下一页&raquo;</span>
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/fileupanddownload/(currentPage=${page.totalPageCount},pageSize=${page.pageSize})}" aria-label="Next">
+                    <span aria-hidden="true">尾页&raquo;</span>
+                </a>
+            </li>
+
+            <li>
+                <!-- 调整pageSize start -->
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text=" '每页显示:' + ${page.pageSize}">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/fileupanddownload/(currentPage=${page.currentPage},pageSize=5 )}">5</a></li>
+                        <li><a th:href="@{/fileupanddownload/(currentPage=${page.currentPage},pageSize=10 )}">10</a></li>
+                        <li><a th:href="@{/fileupanddownload/(currentPage=${page.currentPage},pageSize=20 )}">20</a></li>
+                    </ul>
+                </div>
+                <!-- 调整pageSize结束 -->
+            </li>
+        </ul>
+    </nav>
+    <!--分页部分end -->
 
     <br><br>
 

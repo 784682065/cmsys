@@ -6,7 +6,6 @@ import com.huzp.cmsys.shiro.ShiroKit;
 import com.huzp.cmsys.system.dao.ApplyCMDao;
 import com.huzp.cmsys.system.dao.PageDao;
 import com.huzp.cmsys.system.dao.UserDao;
-import com.huzp.cmsys.system.entity.ApplyCM;
 import com.huzp.cmsys.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +42,6 @@ public class MagCmController extends BaseController{
      */
     @RequestMapping(value= {"/magapply","/"})
     public String MagApply(Model model,Page<List<Map<String,Object>>> page){
-
 
         Integer total = applyCMDao.getTotal();
 

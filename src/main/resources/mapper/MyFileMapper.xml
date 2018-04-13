@@ -24,12 +24,20 @@
         SELECT  f.filename,f.username,f.filecap,f.filepath,f.createtime,f.id
         FROM  file f
         WHERE f.username = #{username}
+        limit #{offset},#{limit}
     </select>
 
     <delete id="deleteFile">
         DELETE FROM  file
         WHERE  filename=#{filename}
     </delete>
+
+    <select id="findTotalFile" resultType="integer" parameterType="integer">
+        select count(*)
+        FROM file
+        WHERE
+        username=#{username}
+    </select>
 
 
 </mapper>

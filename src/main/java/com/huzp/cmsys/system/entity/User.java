@@ -23,7 +23,7 @@ public class User {
     private String dept;
     private String role;
     private String email;
-    private Integer phone;
+    private String phone;
     private String birth;
     private String createtime;
 
@@ -99,11 +99,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
