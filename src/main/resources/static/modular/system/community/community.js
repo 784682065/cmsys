@@ -76,11 +76,10 @@ Com.rejectMyApply = function () {
  */
 Com.updateCM = function () {
 
-
         $.ajax({
         type: "POST",
         url:  "/updateMyCm",
-        data: {id :$("#id").val() , cmdirection:$("#cmdirection").text() ,applyreason:$("#cmdirection").text() },
+        data: {id :$("#id").val() , cmdirection:$("#cmdirection").val() ,applyreason:$("#applyreason").val() },
         success: function(data){
             if (data.status == "成功"){
                 Feng.success(data.status);
