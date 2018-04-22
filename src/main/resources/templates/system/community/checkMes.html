@@ -76,9 +76,12 @@
                     </div>
                 </div>
             </div>
-            <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="" value="确认修改">
+            <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="passApply()" value="通过">
+            <br><br>
+            <input  type="button" style=" width:80%;padding:0;margin:0;float:right;" class="btn btn-primary btn-lg" onclick="Com.rejectApply()" value="驳回">
         </form>
     </div>
+    <script src="/modular/system/community/community.js"></script>
 
     <script th:inline="javascript">
         function passApply() {
