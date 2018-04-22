@@ -30,7 +30,7 @@
                 <td th:text="${iterStat.count}">id</td>
                 <td th:text="${Mes.type}">申请类型</td>
                 <td th:text="${Mes.applicant}">申请人</td>
-                <td><a th:href="@{'/checkApply?id='+${Mes.id}}">查看</a></td>
+                <td><a th:href="@{'/checkMyApply?id='+${Mes.id}}">查看</a></td>
                 <div th:if="${Mes.status} == 1">
                     <td >未读</td>
                 </div>
