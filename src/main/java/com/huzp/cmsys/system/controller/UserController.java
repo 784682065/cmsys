@@ -63,6 +63,7 @@ public class UserController extends BaseController{
         }
         model.addAttribute("roleNameList",roleNameList);
 
+        System.out.printf("ceshi  sourcetree");
         return PREFIX + "user_view";
     }
 
