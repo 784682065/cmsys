@@ -55,7 +55,7 @@ public class MagCmController extends BaseController{
         model.addAttribute("allMes",allMes);
         model.addAttribute("page",page);
 
-        return "/system/community/magApply";
+        return "system/community/magApply";
     }
 
     /**
@@ -74,7 +74,7 @@ public class MagCmController extends BaseController{
         //更改status
         applyCMDao.UpdateStatusById(id);
 
-        return "/system/community/checkMes";
+        return "system/community/checkMes";
     }
 
 
@@ -163,7 +163,7 @@ public class MagCmController extends BaseController{
 
 
 
-        return  "/system/community/magMy";
+        return  "system/community/magMy";
     }
 
     /**
@@ -183,7 +183,7 @@ public class MagCmController extends BaseController{
         //更改status
         applyCMDao.UpdateStatusById(id);
 
-        return "/system/community/checkMyMes";
+        return "system/community/checkMyMes";
     }
 
     /**

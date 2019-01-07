@@ -43,7 +43,7 @@ public class InformController extends BaseController {
         model.addAttribute("type",2);
 
 
-        return "/system/community/inform";
+        return "system/community/inform";
     }
 
     /**
@@ -57,7 +57,7 @@ public class InformController extends BaseController {
         //类型1 为通知
         model.addAttribute("type",1);
 
-        return "/system/community/notices";
+        return "system/community/notices";
     }
 
 
@@ -125,7 +125,7 @@ public class InformController extends BaseController {
         model.addAttribute("cmid",id1);
 
 
-        return "/system/community/cminform";
+        return "system/community/cminform";
     }
 
     /**
@@ -151,7 +151,7 @@ public class InformController extends BaseController {
         model.addAttribute("page",page);
 
 
-        return "/system/community/allnotices";
+        return "system/community/allnotices";
     }
 
 
@@ -178,7 +178,7 @@ public class InformController extends BaseController {
         model.addAttribute("page",page);
 
 
-        return "/system/community/allmes";
+        return "system/community/allmes";
     }
 
     /**
@@ -197,7 +197,7 @@ public class InformController extends BaseController {
 
         model.addAttribute("infrom",infrom);
 
-        return  "/system/community/checkinform";
+        return  "system/community/checkinform";
     }
 
 

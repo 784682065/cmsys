@@ -12,7 +12,7 @@ mybatis:
 
 #项目启动端口
 server:
-  port: 8081
+  port: 8080
 ---
 
 #开发配置
@@ -38,3 +38,23 @@ spring:
 
 #spring.http.multipart.maxFileSize=100Mb
 #spring.http.multipart.maxRequestSize=100Mb
+---
+#开发配置
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://172.16.219.237:3306/huzp
+    username: root
+    password: 654321
+    driver-class-name: com.mysql.jdbc.Driver
+     # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    static-path-pattern: /**
+    thymeleaf:
+      prefix: classpath:/templates/
+      cache: false
+  http:
+    multipart:
+      max-file-size: 10Mb
+      max-request-size: 10Mb

@@ -56,7 +56,7 @@ public class MailController extends BaseController{
 
         model.addAttribute("page",page);
 
-        return "/system/mail/mail";
+        return "system/mail/mail";
     }
 
 
@@ -83,7 +83,7 @@ public class MailController extends BaseController{
         mailDao.modifyMailStatus(id);
 
 
-        return "/system/mail/checkMail";
+        return "system/mail/checkMail";
     }
 
     /**
@@ -136,7 +136,7 @@ public class MailController extends BaseController{
     @RequestMapping("editmail")
     public  String editmail(){
 
-        return  "/system/mail/editMail";
+        return  "system/mail/editMail";
     }
 
     /**
@@ -204,7 +204,7 @@ public class MailController extends BaseController{
 
         model.addAttribute("page",page);
 
-        return "/system/mail/outBox";
+        return "system/mail/outBox";
     }
 
 
@@ -228,6 +228,6 @@ public class MailController extends BaseController{
         model.addAttribute("byUsername",byUsername);
 
 
-        return "/system/mail/checkoutbox";
+        return "system/mail/checkoutbox";
     }
 }

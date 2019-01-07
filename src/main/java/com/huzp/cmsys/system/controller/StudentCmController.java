@@ -52,7 +52,7 @@ public class StudentCmController extends BaseController {
         model.addAttribute("user", user);
 
 
-        return "/system/community/createCM";
+        return "system/community/createCM";
     }
 
 
@@ -124,7 +124,7 @@ public class StudentCmController extends BaseController {
         model.addAttribute("condition",condition);
 
 
-        return "/system/community/applyJoin";
+        return "system/community/applyJoin";
     }
 
 
@@ -146,7 +146,7 @@ public class StudentCmController extends BaseController {
 
 
 
-        return  "/system/community/applyjoinCM";
+        return  "system/community/applyjoinCM";
     }
 
 

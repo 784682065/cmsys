@@ -50,7 +50,7 @@ public class MyCMController extends BaseController{
         model.addAttribute("page",page);
 
 
-        return  "/system/community/myCommunity";
+        return  "system/community/myCommunity";
     }
 
     /**
@@ -70,11 +70,11 @@ public class MyCMController extends BaseController{
 
         //社长的编辑页面
         if( null != position && position.equals("1") ){
-            return "/system/community/editMyCM";
+            return "system/community/editMyCM";
         }else if (null != position && position.equals("2")){
-            return "/system/community/checkMyCM";
+            return "system/community/checkMyCM";
         }else {
-            return "/404";
+            return "404";
         }
 
 
@@ -92,10 +92,10 @@ public class MyCMController extends BaseController{
 
         //社长的编辑页面
         if( null != position && position.equals("2") ){
-            return "/system/community/checkMyCMByvistor";
+            return "system/community/checkMyCMByvistor";
 
         }else {
-            return "/404";
+            return "404";
         }
 
 

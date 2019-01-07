@@ -31,7 +31,7 @@ public class BlackboardController extends BaseController {
     @RequestMapping("")
     public String blackboard() {
 
-        return "/blackboard";
+        return "blackboard";
     }
 
 

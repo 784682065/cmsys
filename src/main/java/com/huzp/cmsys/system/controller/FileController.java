@@ -57,7 +57,7 @@ public class FileController extends BaseController{
         model.addAttribute("page",page);
 
 
-        return  "/system/file/upanddownload";
+        return  "system/file/upanddownload";
     }
 
     /**
